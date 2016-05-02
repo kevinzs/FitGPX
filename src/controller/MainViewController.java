@@ -1,16 +1,24 @@
 
 package controller;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import utilities.FileLoader;
 
 public class MainViewController implements Initializable {
 
+    @FXML private BorderPane borderPane;
     @FXML private ListView<?> listView;
     @FXML private Label labelFecha;
     @FXML private Label labelDuracion;
@@ -30,9 +38,21 @@ public class MainViewController implements Initializable {
     @FXML private Label labelGraficaCadencia;
     @FXML private Insets x1;
     
+    private FileLoader fileLoader;
+    private Stage stage;
+    
+    private List<File> files;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        fileLoader = new FileLoader(stage, Desktop.getDesktop());
     }    
+
+    @FXML
+    private void loadAction(ActionEvent event) {
+        files = fileLoader.loadFiles();
+    }
+    
+    public void setStage(Stage stage){ this.stage = stage; }
     
 }
