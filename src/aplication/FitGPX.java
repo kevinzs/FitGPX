@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class FitGPX extends Application {
-    
+    /* COMENTARIO DE PRUEBA */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/MainView.fxml"));
