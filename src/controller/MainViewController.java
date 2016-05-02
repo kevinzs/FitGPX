@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.awt.Desktop;
@@ -14,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import jgpx.model.analysis.TrackData;
 import utilities.FileLoader;
 import utilities.TracksList;
 
@@ -38,17 +38,24 @@ public class MainViewController implements Initializable {
     @FXML private Label labelGraficaFC;
     @FXML private Label labelGraficaCadencia;
     @FXML private Insets x1;
-    
-    private FileLoader fileLoader;
+
     private Stage stage;
+
+    private FileLoader fileLoader;
     private TracksList tracksList;
     private List<File> files;
-    
+    private TrackData selectedTrack;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fileLoader = new FileLoader(stage, Desktop.getDesktop());
         tracksList = new TracksList();
-    }    
+
+        listView.getSelectionModel().selectedIndexProperty().
+                addListener((o, oldVal, newVal) -> {
+                    selectedTrack = tracksList.getTrackData((int) newVal);
+                });
+    }
 
     @FXML
     private void loadAction(ActionEvent event) {
@@ -56,7 +63,9 @@ public class MainViewController implements Initializable {
         tracksList.setFiles(files);
         listView.setItems(tracksList.refreshList());
     }
-    
-    public void setStage(Stage stage){ this.stage = stage; }
-    
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
 }

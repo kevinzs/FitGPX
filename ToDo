@@ -1,0 +1,15 @@
+Cosas hechas:
+	- Al cargar el/los archivo/s se muestran los tracks en el listView.
+	- Al seleccionar uno de los tracks se pueden cambiar las cosas (selectedTrack 
+		tiene el track del seleccionado y del cual se puede sacar informacion).
+
+Cosas por hacer:
+	- Actualizar todas las labels.
+	- Hacer las graficas.
+	- Hacer la barra de tareas.
+
+Informacion de interes:
+	Como dijimos para no saturar con codigo la clase del controlador vamos a ir
+	haciendo clases en utilities para cosas concretas que queramos hacer. Por ejemplo,
+	ahora se podria hacer una clase que actualizara todo lo que es el resumen del track
+	(etiquetas, graficas, etc).
