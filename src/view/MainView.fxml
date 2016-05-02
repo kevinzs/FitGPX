@@ -1,6 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController"/>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+   <center>
+      <ScrollPane prefHeight="568.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+         <content>
+            <BorderPane prefHeight="800.0" prefWidth="776.0">
+               <top>
+                  <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Resumen de la sesión">
+                           <VBox.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <GridPane prefHeight="141.0" prefWidth="736.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label text="Duración:" />
+                              <Label text="Distancia total recorrida:" GridPane.rowIndex="1" />
+                              <Label text="Altura ganada:" GridPane.rowIndex="2" />
+                              <Label text="Velocidad máxima:" GridPane.columnIndex="2" />
+                              <Label text="Velocidad media:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <Label text="FC máxima:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Label text="Altura perdida:" GridPane.rowIndex="3" />
+                              <Label text="FC mínima:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Label text="FC media:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Label text="CP máxima:" GridPane.rowIndex="4" />
+                              <Label text="CP mínima:" GridPane.rowIndex="5" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </top>
+               <center>
+                  <VBox prefHeight="500.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Gráficas">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <LineChart>
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                        <LineChart>
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                        <LineChart>
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
+         </content>
+      </ScrollPane>
+   </center>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Sesiones de:">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <ChoiceBox prefWidth="150.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="5.0" />
+               </VBox.margin>
+            </ChoiceBox>
+            <ScrollPane prefHeight="479.0" prefWidth="200.0">
+               <content>
+                  <ListView fx:id="listView" prefHeight="451.0" prefWidth="184.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>
