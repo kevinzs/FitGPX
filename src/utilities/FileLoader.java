@@ -2,7 +2,6 @@ package utilities;
 
 import java.awt.Desktop;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
