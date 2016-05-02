@@ -15,11 +15,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import utilities.FileLoader;
+import utilities.TracksList;
 
 public class MainViewController implements Initializable {
 
     @FXML private BorderPane borderPane;
-    @FXML private ListView<?> listView;
+    @FXML private ListView<String> listView;
     @FXML private Label labelFecha;
     @FXML private Label labelDuracion;
     @FXML private Label labelVelocidadMaxima;
@@ -40,17 +41,20 @@ public class MainViewController implements Initializable {
     
     private FileLoader fileLoader;
     private Stage stage;
-    
+    private TracksList tracksList;
     private List<File> files;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fileLoader = new FileLoader(stage, Desktop.getDesktop());
+        tracksList = new TracksList();
     }    
 
     @FXML
     private void loadAction(ActionEvent event) {
         files = fileLoader.loadFiles();
+        tracksList.setFiles(files);
+        listView.setItems(tracksList.refreshList());
     }
     
     public void setStage(Stage stage){ this.stage = stage; }
