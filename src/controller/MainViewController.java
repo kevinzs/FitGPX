@@ -59,13 +59,20 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void loadAction(ActionEvent event) {
-        files = fileLoader.loadFiles();
-        tracksList.setFiles(files);
+        fileLoader.loadFiles();
+        tracksList.setFiles(fileLoader.getFiles());
         listView.setItems(tracksList.refreshList());
     }
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    @FXML
+    private void addFileAction(ActionEvent event) {
+        fileLoader.addFiles();
+        tracksList.setFiles(fileLoader.getFiles());
+        listView.setItems(tracksList.refreshList());
     }
 
 }
