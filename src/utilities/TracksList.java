@@ -52,7 +52,7 @@ public class TracksList {
             for(int i=0; i<gpxFile.getTrk().size(); i++){
                 list.add(gpxFile.getTrk().get(i).getName());
                 TrackData trackData = new TrackData(new Track(gpxFile.getTrk().get(i)));
-                tracksList.add(trackData);
+                tracksList.add(trackData);            
             }
         }
         ObservableList<String> data = FXCollections.observableArrayList(list);

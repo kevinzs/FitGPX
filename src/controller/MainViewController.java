@@ -9,8 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import jgpx.model.analysis.TrackData;
@@ -21,23 +25,33 @@ public class MainViewController implements Initializable {
 
     @FXML private BorderPane borderPane;
     @FXML private ListView<String> listView;
-    @FXML private Label labelFecha;
-    @FXML private Label labelDuracion;
-    @FXML private Label labelVelocidadMaxima;
-    @FXML private Label labelVelocidadMedia;
-    @FXML private Label labelFCMaxima;
-    @FXML private Label labelFCMinima;
-    @FXML private Label labelFCMedia;
-    @FXML private Label labelCPMaxima;
-    @FXML private Label labelCPMinima;
-    @FXML private Label labelDesnivel;
-    @FXML private Label labelDistanciaRecorrida;
-    @FXML private Label labelTiempoMovimiento;
-    @FXML private Label labelGraficaAltura;
-    @FXML private Label labelGraficaVelocidad;
-    @FXML private Label labelGraficaFC;
-    @FXML private Label labelGraficaCadencia;
     @FXML private Insets x1;
+    
+    @FXML protected Label labelFecha;
+    @FXML protected Label labelDuracion;
+    @FXML protected Label labelVelocidadMaxima;
+    @FXML protected Label labelVelocidadMedia;
+    @FXML protected Label labelFCMaxima;
+    @FXML protected Label labelFCMinima;
+    @FXML protected Label labelFCMedia;
+    @FXML protected Label labelCPMaxima;
+    @FXML protected Label labelCPMedia;
+    @FXML protected Label labelDesnivel;
+    @FXML protected Label labelDistanciaRecorrida;
+    @FXML protected Label labelTiempoMovimiento;
+
+
+    @FXML protected ToggleButton toggleBase;
+    
+    @FXML protected Label labelGraficaAltura;
+    @FXML protected Label labelGraficaVelocidad;
+    @FXML protected Label labelGraficaFC;
+    @FXML protected Label labelGraficaCadencia;
+    @FXML protected AreaChart<?, ?> chartAltura;
+    @FXML protected LineChart<?, ?> chartVelocidad;
+    @FXML protected LineChart<?, ?> chartFC;
+    @FXML protected LineChart<?, ?> chartCadencia;
+    @FXML protected PieChart chartDistribucion;
 
     private Stage stage;
 
@@ -45,15 +59,22 @@ public class MainViewController implements Initializable {
     private TracksList tracksList;
     private List<File> files;
     private TrackData selectedTrack;
+    private Summary summary;
+    private Charts charts;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fileLoader = new FileLoader(stage, Desktop.getDesktop());
         tracksList = new TracksList();
+        summary = new Summary(this);
+        charts = new Charts(this);
 
         listView.getSelectionModel().selectedIndexProperty().
                 addListener((o, oldVal, newVal) -> {
                     selectedTrack = tracksList.getTrackData((int) newVal);
+                    summary.setLabels(selectedTrack);
+                    charts.setLabels(selectedTrack);
                 });
     }
 
@@ -75,4 +96,9 @@ public class MainViewController implements Initializable {
         listView.setItems(tracksList.refreshList());
     }
 
+    @FXML
+    private void togglePressed(ActionEvent event) {
+        if (selectedTrack != null)
+            charts.setLabels(selectedTrack);
+    }
 }
