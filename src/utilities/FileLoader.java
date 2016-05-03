@@ -12,7 +12,6 @@ public class FileLoader {
     private final Desktop desktop;
     
     private final FileChooser fileChooser;
-    private List<File> files;
 
     public FileLoader(Stage stage, Desktop desktop) {
         this.stage = stage;

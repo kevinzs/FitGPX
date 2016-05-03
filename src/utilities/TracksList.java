@@ -30,6 +30,7 @@ public class TracksList {
     public void setFiles(List<File> files){ this.files = files; }
 
     public void readFiles() {
+        gpxFiles.clear();
         for(File file : files){
             try{
                 JAXBContext jaxbContext = JAXBContext.newInstance(GpxType.class,
@@ -45,6 +46,7 @@ public class TracksList {
 
     public ObservableList<String> refreshList() {
         readFiles();
+        tracksList.clear();
         List<String> list = new ArrayList();
         for(GpxType gpxFile : gpxFiles){
             for(int i=0; i<gpxFile.getTrk().size(); i++){
