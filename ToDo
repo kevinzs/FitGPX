@@ -3,7 +3,10 @@ Cosas hechas:
 	- Al seleccionar uno de los tracks se pueden cambiar las cosas (selectedTrack 
 		tiene el track del seleccionado y del cual se puede sacar informacion).
 	- setLabels de Summary y Charts.
+	- Grafica de area hecha.
 
 Cosas por hacer:
 	- Hacer las graficas.
 	- Hacer la barra de tareas.
+	- Redimensionar la parte del scrollpane (cuando se maximiza la ventana
+		no se maximiza esa parte)

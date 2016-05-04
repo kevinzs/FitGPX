@@ -31,15 +31,17 @@ public class TracksList {
 
     public void readFiles() {
         gpxFiles.clear();
-        for(File file : files){
-            try{
-                JAXBContext jaxbContext = JAXBContext.newInstance(GpxType.class,
-                        TrackPointExtensionT.class);
-                Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-                JAXBElement<Object> root = (JAXBElement<Object>) unmarshaller.unmarshal(file);
-                gpxFiles.add((GpxType) root.getValue());
-            } catch (JAXBException e){
-                e.printStackTrace();
+        if(files != null){
+            for(File file : files){
+                try{
+                    JAXBContext jaxbContext = JAXBContext.newInstance(GpxType.class,
+                            TrackPointExtensionT.class);
+                    Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+                    JAXBElement<Object> root = (JAXBElement<Object>) unmarshaller.unmarshal(file);
+                    gpxFiles.add((GpxType) root.getValue());
+                } catch (JAXBException e){
+                    e.printStackTrace();
+                }
             }
         }
     }
