@@ -81,7 +81,7 @@ public class MainViewController implements Initializable {
                     summary.setLabels(selectedTrack);
                     charts.setTrackData(selectedTrack);
                     charts.setLabels();
-                    charts.setAreaChart();
+                    charts.refreshCharts();
                 });
     }
 
@@ -105,7 +105,9 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void togglePressed(ActionEvent event) {
-        if (selectedTrack != null)
+        if (selectedTrack != null){
             charts.setLabels();
+            charts.refreshCharts();
+        }
     }
 }

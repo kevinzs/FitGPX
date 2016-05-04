@@ -38,12 +38,24 @@ public class Charts{
         }
     }
     
+    public void refreshCharts(){
+        setAreaChart();
+    }
+    
     public void setAreaChart(){
         controller.chartAltura.setCreateSymbols(false);
         XYChart.Series<Number,Number> series = new XYChart.Series();
-        for(int i=0; i<chunks.size(); i++){
-            series.getData().add(new XYChart.Data(chunks.get(i).getDistance(), chunks.get(i).getAvgHeight()));
+        int distance = 0, duration = 0;
+        for(Chunk chunk : chunks){
+            if(controller.toggleBase.isSelected()){ // Altura x Tiempo
+                duration += chunk.getDuration().getSeconds();
+                series.getData().add(new XYChart.Data<>(duration, chunk.getAvgHeight()));
+            } else {    // Altura x Distancia
+                distance += chunk.getDistance();
+                series.getData().add(new XYChart.Data<>(distance, chunk.getAvgHeight()));
+            }
         }
+        controller.chartAltura.getData().clear();
         controller.chartAltura.getData().addAll(series);
     }
 }
