@@ -10,7 +10,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -47,11 +49,14 @@ public class MainViewController implements Initializable {
     @FXML protected Label labelGraficaVelocidad;
     @FXML protected Label labelGraficaFC;
     @FXML protected Label labelGraficaCadencia;
-    @FXML protected AreaChart<?, ?> chartAltura;
+    @FXML protected AreaChart<Number, Number> chartAltura;
     @FXML protected LineChart<?, ?> chartVelocidad;
     @FXML protected LineChart<?, ?> chartFC;
     @FXML protected LineChart<?, ?> chartCadencia;
     @FXML protected PieChart chartDistribucion;
+    
+    @FXML protected NumberAxis chartAreaY;
+    @FXML protected NumberAxis chartAreaX;
 
     private Stage stage;
 
@@ -74,7 +79,9 @@ public class MainViewController implements Initializable {
                 addListener((o, oldVal, newVal) -> {
                     selectedTrack = tracksList.getTrackData((int) newVal);
                     summary.setLabels(selectedTrack);
-                    charts.setLabels(selectedTrack);
+                    charts.setTrackData(selectedTrack);
+                    charts.setLabels();
+                    charts.setAreaChart();
                 });
     }
 
@@ -99,6 +106,6 @@ public class MainViewController implements Initializable {
     @FXML
     private void togglePressed(ActionEvent event) {
         if (selectedTrack != null)
-            charts.setLabels(selectedTrack);
+            charts.setLabels();
     }
 }
