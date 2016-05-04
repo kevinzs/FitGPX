@@ -24,18 +24,18 @@
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
   <center>
-    <ScrollPane prefHeight="700.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+    <ScrollPane prefHeight="1000.0" prefWidth="700.0" BorderPane.alignment="CENTER">
       <content>
-        <BorderPane prefHeight="800.0" prefWidth="776.0">
+        <BorderPane prefHeight="1500.0" prefWidth="776.0">
           <center>
-            <VBox prefHeight="600.0" prefWidth="100.0" spacing="0.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="1000.0" prefWidth="100.0" spacing="0.0" BorderPane.alignment="CENTER">
               <children>
                 <Separator prefWidth="200.0">
                   <VBox.margin>
                     <Insets bottom="20.0" top="20.0" />
                   </VBox.margin>
                 </Separator>
-                <HBox prefHeight="48.0" prefWidth="776.0">
+                <HBox prefHeight="30.0" prefWidth="776.0">
                   <children>
                     <Label contentDisplay="CENTER" prefHeight="56.0" prefWidth="150.0" text="Gráficas" textAlignment="LEFT">
                       <font>
@@ -60,7 +60,7 @@
                     <Insets left="20.0" top="10.0" />
                   </VBox.margin>
                 </Label>
-                <AreaChart fx:id="chartAltura" prefHeight="300.0" prefWidth="776.0">
+                <AreaChart fx:id="chartAltura" maxHeight="-Infinity" prefHeight="175.0" prefWidth="776.0">
                   <xAxis>
                     <NumberAxis fx:id="chartAreaX" side="BOTTOM" />
                   </xAxis>
@@ -73,7 +73,7 @@
                     <Insets left="20.0" fx:id="x1" />
                   </VBox.margin>
                 </Label>
-                <LineChart fx:id="chartVelocidad">
+                <LineChart fx:id="chartVelocidad" prefHeight="175.0">
                   <xAxis>
                     <CategoryAxis side="BOTTOM" />
                   </xAxis>
@@ -82,7 +82,7 @@
                   </yAxis>
                 </LineChart>
                 <Label fx:id="labelGraficaFC" text="" VBox.margin="$x1" />
-                <LineChart fx:id="chartFC">
+                <LineChart fx:id="chartFC" prefHeight="175.0">
                   <xAxis>
                     <CategoryAxis side="BOTTOM" />
                   </xAxis>
@@ -91,7 +91,7 @@
                   </yAxis>
                 </LineChart>
                 <Label fx:id="labelGraficaCadencia" text="" VBox.margin="$x1" />
-                <LineChart fx:id="chartCadencia">
+                <LineChart fx:id="chartCadencia" prefHeight="175.0">
                   <xAxis>
                     <CategoryAxis side="BOTTOM" />
                   </xAxis>
@@ -105,7 +105,7 @@
                 <PieChart id="PieChart" fx:id="chartDistribucion" />
               </children>
               <BorderPane.margin>
-                <Insets top="30.0" />
+                <Insets top="10.0" />
               </BorderPane.margin>
             </VBox>
           </center>
@@ -199,11 +199,7 @@
             <Insets bottom="10.0" top="5.0" />
           </VBox.margin>
         </ChoiceBox>
-        <ScrollPane prefHeight="479.0" prefWidth="200.0">
-          <content>
-            <ListView fx:id="listView" prefHeight="451.0" prefWidth="184.0" />
-          </content>
-        </ScrollPane>
+      <ListView fx:id="listView" prefHeight="451.0" prefWidth="184.0" />
       </children>
     </VBox>
   </left>
@@ -212,7 +208,10 @@
       <items>
         <Button mnemonicParsing="false" onAction="#loadAction" text="Cargar" />
         <Button mnemonicParsing="false" onAction="#addFileAction" text="Añadir Fichero/s" />
-        <Button mnemonicParsing="false" text="Combinar Graficas" />
+        <Button mnemonicParsing="false" text="Combinar Graficas">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Button>
         <Button mnemonicParsing="false" text="Diario de Actividad" />
       </items>
     </ToolBar>

@@ -23,6 +23,8 @@ public class FileLoader {
         fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccione los archivos");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("GPX", "*.gpx"));
+        File defaultDirectory = new File("tracks/");
+        fileChooser.setInitialDirectory(defaultDirectory);
     }
     
     public List<File> getFiles() { return this.files; }
@@ -33,8 +35,10 @@ public class FileLoader {
     
     public void addFiles(){
         List<File> list = fileChooser.showOpenMultipleDialog(stage);
-        this.files = new ArrayList<>(this.files);
-        for(int i=0; i<list.size(); i++)
-            this.files.add(list.get(i));
+        if(list != null){
+            this.files = new ArrayList<>(this.files);
+            for(int i=0; i<list.size(); i++)
+                this.files.add(list.get(i));
+        }
     }
 }

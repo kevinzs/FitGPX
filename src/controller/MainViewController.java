@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
@@ -41,7 +40,6 @@ public class MainViewController implements Initializable {
     @FXML protected Label labelDesnivel;
     @FXML protected Label labelDistanciaRecorrida;
     @FXML protected Label labelTiempoMovimiento;
-
 
     @FXML protected ToggleButton toggleBase;
     

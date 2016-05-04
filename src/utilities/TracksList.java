@@ -25,13 +25,13 @@ public class TracksList {
         tracksList = new ArrayList<>();
     }
     
-    public TrackData getTrackData(int i){ return tracksList.get(i); }
+    public TrackData getTrackData(int i) { return tracksList.get(i); }
     
     public void setFiles(List<File> files){ this.files = files; }
 
     public void readFiles() {
-        gpxFiles.clear();
         if(files != null){
+            gpxFiles.clear();
             for(File file : files){
                 try{
                     JAXBContext jaxbContext = JAXBContext.newInstance(GpxType.class,

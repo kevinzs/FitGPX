@@ -1,9 +1,6 @@
 package controller;
 
 import javafx.collections.ObservableList;
-import javafx.scene.chart.AreaChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import jgpx.model.analysis.Chunk;
 import jgpx.model.analysis.TrackData;
