@@ -13,19 +13,24 @@ public class FileLoader {
     private final Desktop desktop;
     
     private List<File> files;
-    
+    private boolean changed;
     private final FileChooser fileChooser;
 
     public FileLoader(Stage stage, Desktop desktop) {
         this.stage = stage;
         this.desktop = desktop;
         this.files = new ArrayList<>();
+        changed = false;
         fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccione los archivos");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("GPX", "*.gpx"));
+        File defaultDirectory = new File("tracks/");
+        fileChooser.setInitialDirectory(defaultDirectory);
     }
     
     public List<File> getFiles() { return this.files; }
+    
+    public boolean hasChanged() { return changed; }
     
     public void loadFiles(){
         this.files = fileChooser.showOpenMultipleDialog(stage);
@@ -33,8 +38,12 @@ public class FileLoader {
     
     public void addFiles(){
         List<File> list = fileChooser.showOpenMultipleDialog(stage);
-        this.files = new ArrayList<>(this.files);
-        for(int i=0; i<list.size(); i++)
-            this.files.add(list.get(i));
+        if (list != null){
+            this.files = new ArrayList<>(this.files);
+            for (int i = 0; i < list.size(); i++)
+                this.files.add(list.get(i));
+            changed = true;
+        } else
+            changed = false;
     }
 }

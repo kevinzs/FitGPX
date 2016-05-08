@@ -25,21 +25,25 @@ public class TracksList {
         tracksList = new ArrayList<>();
     }
     
-    public TrackData getTrackData(int i){ return tracksList.get(i); }
+    public TrackData getTrackData(int i) { return tracksList.get(i); }
     
-    public void setFiles(List<File> files){ this.files = files; }
+    public void setFiles(List<File> files) { this.files = files; }
+    
+    public List<File> getFiles() { return this.files; }
 
     public void readFiles() {
-        gpxFiles.clear();
-        for(File file : files){
-            try{
-                JAXBContext jaxbContext = JAXBContext.newInstance(GpxType.class,
-                        TrackPointExtensionT.class);
-                Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-                JAXBElement<Object> root = (JAXBElement<Object>) unmarshaller.unmarshal(file);
-                gpxFiles.add((GpxType) root.getValue());
-            } catch (JAXBException e){
-                e.printStackTrace();
+        if (files != null){
+            gpxFiles.clear();
+            for (File file : files){
+                try{
+                    JAXBContext jaxbContext = JAXBContext.newInstance(GpxType.class,
+                            TrackPointExtensionT.class);
+                    Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+                    JAXBElement<Object> root = (JAXBElement<Object>) unmarshaller.unmarshal(file);
+                    gpxFiles.add((GpxType) root.getValue());
+                } catch (JAXBException e){
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -48,8 +52,8 @@ public class TracksList {
         readFiles();
         tracksList.clear();
         List<String> list = new ArrayList();
-        for(GpxType gpxFile : gpxFiles){
-            for(int i=0; i<gpxFile.getTrk().size(); i++){
+        for (GpxType gpxFile : gpxFiles){
+            for (int i = 0; i < gpxFile.getTrk().size(); i++){
                 list.add(gpxFile.getTrk().get(i).getName());
                 TrackData trackData = new TrackData(new Track(gpxFile.getTrk().get(i)));
                 tracksList.add(trackData);            
