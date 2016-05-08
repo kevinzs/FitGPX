@@ -2,11 +2,20 @@ Cosas hechas:
 	- Al cargar el/los archivo/s se muestran los tracks en el listView.
 	- Al seleccionar uno de los tracks se pueden cambiar las cosas (selectedTrack 
 		tiene el track del seleccionado y del cual se puede sacar informacion).
-	- setLabels de Summary y Charts.
-	- Grafica de area hecha.
+	- setLabels de Summary.
+	- Graficas hechas.
 
 Cosas por hacer:
-	- Hacer las graficas.
+	- Usar hilos
 	- Hacer la barra de tareas.
 	- Redimensionar la parte del scrollpane (cuando se maximiza la ventana
 		no se maximiza esa parte)
+
+
+Sugerencias para el CSS:
+	- Reducir el ancho de linea de los line chart y poner varios colores
+	- Darle borde al HBOX que contiene Label:Graficas y el toggle para hacerlo mas boniko
+
+
+Notas:
+	- Preguntar al tontopoya del profesor lo de los metros si esta mal

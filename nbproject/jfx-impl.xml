@@ -1695,7 +1695,7 @@
                     }
                     // set download mode of dependent libraries
                     function setDownloadMode(fsEager, fsLazy, jars) {
-                        for(var i = 0; i < jars.length; i++) {
+                        for (var i = 0; i < jars.length; i++) {
                             fsEager.setExcludes("lib" + S + jars[i]);
                             fsLazy.setIncludes("lib" + S + jars[i]);
                         }
@@ -2116,7 +2116,7 @@
                     }
                     // set download mode of dependent libraries
                     function setDownloadMode(fsEager, fsLazy, jars) {
-                        for(var i = 0; i < jars.length; i++) {
+                        for (var i = 0; i < jars.length; i++) {
                             fsEager.setExcludes("lib" + S + jars[i]);
                             fsLazy.setIncludes("lib" + S + jars[i]);
                         }
@@ -2414,7 +2414,7 @@
                     var jvmargs = new String(project.getProperty("run.jvmargs"));
                     if(defined(jvmargs)) {
                         var jvmargss = jvmargs.split(" ");
-                        for(var i = 0; i < jvmargss.length; i++) {
+                        for (var i = 0; i < jvmargss.length; i++) {
                             if(defined(jvmargss[i])) {
                                 var vmarg = plat.createJvmarg();
                                 vmarg.setValue(jvmargss[i]);

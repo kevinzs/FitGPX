@@ -8,10 +8,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -26,7 +24,6 @@ public class MainViewController implements Initializable {
 
     @FXML private BorderPane borderPane;
     @FXML private ListView<String> listView;
-    @FXML private Insets x1;
     
     @FXML protected Label labelFecha;
     @FXML protected Label labelDuracion;
@@ -43,18 +40,11 @@ public class MainViewController implements Initializable {
 
     @FXML protected ToggleButton toggleBase;
     
-    @FXML protected Label labelGraficaAltura;
-    @FXML protected Label labelGraficaVelocidad;
-    @FXML protected Label labelGraficaFC;
-    @FXML protected Label labelGraficaCadencia;
     @FXML protected AreaChart<Number, Number> chartAltura;
-    @FXML protected LineChart<?, ?> chartVelocidad;
-    @FXML protected LineChart<?, ?> chartFC;
-    @FXML protected LineChart<?, ?> chartCadencia;
+    @FXML protected LineChart<Number, Number> chartVelocidad;
+    @FXML protected LineChart<Number, Number> chartFC;
+    @FXML protected LineChart<Number, Number> chartCadencia;
     @FXML protected PieChart chartDistribucion;
-    
-    @FXML protected NumberAxis chartAreaY;
-    @FXML protected NumberAxis chartAreaX;
 
     private Stage stage;
 
@@ -65,6 +55,9 @@ public class MainViewController implements Initializable {
     private Summary summary;
     private Charts charts;
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -78,7 +71,6 @@ public class MainViewController implements Initializable {
                     selectedTrack = tracksList.getTrackData((int) newVal);
                     summary.setLabels(selectedTrack);
                     charts.setTrackData(selectedTrack);
-                    charts.setLabels();
                     charts.refreshCharts();
                 });
     }
@@ -86,25 +78,24 @@ public class MainViewController implements Initializable {
     @FXML
     private void loadAction(ActionEvent event) {
         fileLoader.loadFiles();
-        tracksList.setFiles(fileLoader.getFiles());
-        listView.setItems(tracksList.refreshList());
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
+        if (!fileLoader.getFiles().equals(tracksList.getFiles())){
+            tracksList.setFiles(fileLoader.getFiles());
+            listView.setItems(tracksList.refreshList());
+        }
     }
 
     @FXML
     private void addFileAction(ActionEvent event) {
         fileLoader.addFiles();
-        tracksList.setFiles(fileLoader.getFiles());
-        listView.setItems(tracksList.refreshList());
+        if (fileLoader.hasChanged()){
+            tracksList.setFiles(fileLoader.getFiles());
+            listView.setItems(tracksList.refreshList());
+        }
     }
 
     @FXML
     private void togglePressed(ActionEvent event) {
         if (selectedTrack != null){
-            charts.setLabels();
             charts.refreshCharts();
         }
     }
