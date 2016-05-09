@@ -7,9 +7,10 @@ Cosas hechas:
 
 Cosas por hacer:
 	- Usar hilos
-	- Hacer la barra de tareas.
+	- Hacer la barra de tareas (Combinar y Diario).
 	- Redimensionar la parte del scrollpane (cuando se maximiza la ventana
 		no se maximiza esa parte)
+	- Mensaje alerta si pulsas el boton de CombinarGraficas sin ningun track seleccionado.
 
 
 Sugerencias para el CSS:
@@ -19,3 +20,13 @@ Sugerencias para el CSS:
 
 Notas:
 	- Preguntar al tontopoya del profesor lo de los metros si esta mal
+
+
+
+--------------> KEVIN <---------------------
+
+He creado el FXML CombineView y su controlador.
+He pensado que lo mejor era que Charts guardara las series que iba haciendo de modo que no tenemos que recalcularlas
+sino que con getSeries() se las pasamos al metodo setSeries() de CombineViewController. La cosa es que no acabo de
+aclararme con la burocracia de los controladores y mierdas, a ver si lo sacas tu. Por lo demas creo que esta bien.
+

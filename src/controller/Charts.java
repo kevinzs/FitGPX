@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
@@ -12,7 +14,11 @@ public class Charts{
     
     private final MainViewController controller;
     private TrackData track;
-    ObservableList<Chunk> chunks;
+    private ObservableList<Chunk> chunks;
+    
+    private XYChart.Series<Number,Number> seriesVelocidad;
+    private XYChart.Series<Number,Number> seriesFC;
+    private XYChart.Series<Number,Number> seriesCadencia;
     
     public Charts (MainViewController controller) {
         this.controller = controller;
@@ -29,6 +35,12 @@ public class Charts{
         setChartFC();
         setChartCadencia();
         setChartDistribucion();
+    }
+    
+    public List<XYChart.Series<Number,Number>> getSeries(){
+        List<XYChart.Series<Number,Number>> list = new ArrayList<>();
+        list.add(0, seriesVelocidad); list.add(1, seriesFC); list.add(2, seriesCadencia);
+        return list;
     }
     
     public void setChartAltura(){
@@ -54,65 +66,65 @@ public class Charts{
     
     public void setChartVelocidad(){
         controller.chartVelocidad.setCreateSymbols(false);
-        XYChart.Series<Number,Number> series = new XYChart.Series();
+        seriesVelocidad = new XYChart.Series();
         int value = 0;
         if (controller.toggleBase.isSelected()){
             controller.chartVelocidad.setTitle("Velocidad x Tiempo");
             for (Chunk chunk : chunks){
                 value += chunk.getDuration().getSeconds();
-                series.getData().add(new XYChart.Data<>(value, chunk.getSpeed()));
+                seriesVelocidad.getData().add(new XYChart.Data<>(value, chunk.getSpeed()));
             }
         } else {
             controller.chartVelocidad.setTitle("Velocidad x Distancia");
             for (Chunk chunk : chunks){
                 value += chunk.getDistance();
-                series.getData().add(new XYChart.Data<>(value, chunk.getSpeed()));
+                seriesVelocidad.getData().add(new XYChart.Data<>(value, chunk.getSpeed()));
             }
         }
         controller.chartVelocidad.getData().clear();
-        controller.chartVelocidad.getData().addAll(series);
+        controller.chartVelocidad.getData().addAll(seriesVelocidad);
     }
     
     public void setChartFC(){
         controller.chartFC.setCreateSymbols(false);
-        XYChart.Series<Number,Number> series = new XYChart.Series();
+        seriesFC = new XYChart.Series();
         int value = 0;
         if (controller.toggleBase.isSelected()){
             controller.chartFC.setTitle("FC x Tiempo");
             for (Chunk chunk : chunks){
                 value += chunk.getDuration().getSeconds();
-                series.getData().add(new XYChart.Data<>(value, chunk.getAvgHeartRate()));
+                seriesFC.getData().add(new XYChart.Data<>(value, chunk.getAvgHeartRate()));
             }
         } else {
             controller.chartFC.setTitle("FC x Distancia");
             for (Chunk chunk : chunks){
                 value += chunk.getDistance();
-                series.getData().add(new XYChart.Data<>(value, chunk.getAvgHeartRate()));
+                seriesFC.getData().add(new XYChart.Data<>(value, chunk.getAvgHeartRate()));
             }
         }
         controller.chartFC.getData().clear();
-        controller.chartFC.getData().addAll(series);
+        controller.chartFC.getData().addAll(seriesFC);
     }
         
     public void setChartCadencia(){
         controller.chartCadencia.setCreateSymbols(false);
-        XYChart.Series series = new XYChart.Series();
+        seriesCadencia = new XYChart.Series();
         int value = 0;
         if (controller.toggleBase.isSelected()){
             controller.chartCadencia.setTitle("Cadencia x Tiempo");
             for (Chunk chunk : chunks){
                 value += chunk.getDuration().getSeconds();
-                series.getData().add(new XYChart.Data<>(value, chunk.getAvgCadence()));
+                seriesCadencia.getData().add(new XYChart.Data<>(value, chunk.getAvgCadence()));
             }
         } else {
             controller.chartCadencia.setTitle("Cadencia x Distancia");
             for (Chunk chunk : chunks){
                 value += chunk.getDistance();
-                series.getData().add(new XYChart.Data<>(value, chunk.getAvgCadence()));
+                seriesCadencia.getData().add(new XYChart.Data<>(value, chunk.getAvgCadence()));
             }
         }
         controller.chartCadencia.getData().clear();
-        controller.chartCadencia.getData().addAll(series);
+        controller.chartCadencia.getData().addAll(seriesCadencia);
     }
     
     public void setChartDistribucion(){
@@ -142,6 +154,6 @@ public class Charts{
                 new PieChart.Data("Anaeróbico", z5));
         controller.chartDistribucion.setData(pieChartData);
         controller.chartDistribucion.setTitle("Tiempo en cada zona cardiaca\n"
-                                              + "           FC Maxima: " + maxFC );
+                                              + "         FC Maxima: " + maxFC + " PPM" );
     }
 }

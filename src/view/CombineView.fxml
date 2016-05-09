@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="544.0" prefWidth="710.0" visible="true" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.CombineViewController">
+  <children>
+    <LineChart fx:id="chartCombinado" layoutX="33.0" layoutY="31.0" legendSide="BOTTOM" prefHeight="429.0" prefWidth="649.0" title="">
+      <xAxis>
+        <CategoryAxis side="BOTTOM" />
+      </xAxis>
+      <yAxis>
+        <NumberAxis side="LEFT" />
+      </yAxis>
+    </LineChart>
+    <ToggleButton id="toggleBase" fx:id="toggleVelocidad" contentDisplay="CENTER" layoutX="91.0" layoutY="479.0" mnemonicParsing="false" onAction="#toggleVelocidadPressed" prefHeight="30.0" prefWidth="150.0" text="Velocidad" textAlignment="CENTER" />
+    <ToggleButton id="toggleBase" fx:id="toggleCadencia" contentDisplay="CENTER" layoutX="280.0" layoutY="479.0" mnemonicParsing="false" onAction="#toggleCadenciaPressed" prefHeight="30.0" prefWidth="150.0" text="Cadencia" textAlignment="CENTER" />
+    <ToggleButton id="toggleBase" fx:id="toggleFC" contentDisplay="CENTER" layoutX="467.0" layoutY="479.0" mnemonicParsing="false" onAction="#toggleFCPressed" prefHeight="30.0" prefWidth="150.0" text="FC" textAlignment="CENTER" />
+  </children>
+</AnchorPane>

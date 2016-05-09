@@ -202,7 +202,7 @@
       <items>
         <Button mnemonicParsing="false" onAction="#loadAction" text="Cargar" />
         <Button mnemonicParsing="false" onAction="#addFileAction" text="Añadir Fichero/s" />
-        <Button mnemonicParsing="false" text="Combinar Graficas" />
+        <Button mnemonicParsing="false" onAction="#combineAction" text="Combinar Graficas" />
         <Button mnemonicParsing="false" text="Diario de Actividad" />
       </items>
     </ToolBar>

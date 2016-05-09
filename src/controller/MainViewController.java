@@ -2,18 +2,24 @@ package controller;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import jgpx.model.analysis.TrackData;
@@ -54,6 +60,7 @@ public class MainViewController implements Initializable {
     private TrackData selectedTrack;
     private Summary summary;
     private Charts charts;
+    private CombineViewController combineView;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -65,6 +72,7 @@ public class MainViewController implements Initializable {
         tracksList = new TracksList();
         summary = new Summary(this);
         charts = new Charts(this);
+        combineView = new CombineViewController(this);
 
         listView.getSelectionModel().selectedIndexProperty().
                 addListener((o, oldVal, newVal) -> {
@@ -72,6 +80,7 @@ public class MainViewController implements Initializable {
                     summary.setLabels(selectedTrack);
                     charts.setTrackData(selectedTrack);
                     charts.refreshCharts();
+                    combineView.setSeries(charts.getSeries());
                 });
     }
 
@@ -97,6 +106,27 @@ public class MainViewController implements Initializable {
     private void togglePressed(ActionEvent event) {
         if (selectedTrack != null){
             charts.refreshCharts();
+        }
+    }
+    
+    @FXML
+    private void combineAction(ActionEvent event) {
+        try {
+            Stage newStage = new Stage();
+            newStage.setTitle("Combinar graficas");
+            
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/CombineView.fxml"));
+            AnchorPane root = (AnchorPane) miCargador.load();
+            
+            
+            ((CombineViewController) miCargador.getController()).setController(this);
+
+            
+            Scene scene = new Scene(root);
+            newStage.setScene(scene);
+            newStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
