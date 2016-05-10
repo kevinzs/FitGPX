@@ -25,10 +25,6 @@ public class CombineViewController implements Initializable {
     
     private String title;
     
-    public CombineViewController (MainViewController controller) {
-        this.controller = controller;
-    }
-    
     public void setController (MainViewController controller) {
         this.controller = controller;
     }
@@ -37,21 +33,26 @@ public class CombineViewController implements Initializable {
         seriesVelocidad = list.get(0);
         seriesFC = list.get(1);
         seriesCadencia = list.get(2);
-    }    
-    
-    public void initialize(URL url, ResourceBundle rb) {
-        chartCombinado.setCreateSymbols(false);
+        
+        
         seriesVelocidad.setName("Velocidad");
         seriesFC.setName("Frecuencia Cardiaca");
         seriesCadencia.setName("Cadencia");
-        int value = 0;
-        String title = "Velocidad FC Cadencia ";
+        
+        chartCombinado.setCreateSymbols(false);
+        
+        title = "Velocidad FC Cadencia ";
         if (controller.toggleBase.isSelected())
             title += "x Tiempo";
         else
             title += "x Distancia";
+        
         chartCombinado.getData().addAll(seriesVelocidad, seriesCadencia, seriesFC);
         chartCombinado.setTitle(title);
+    }    
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
 
     }    
     
@@ -59,7 +60,7 @@ public class CombineViewController implements Initializable {
     private void toggleVelocidadPressed(ActionEvent event) {
         if (toggleVelocidad.isSelected()){
             chartCombinado.getData().remove(seriesVelocidad);
-            title.replace("Velocidad ", "");
+            title = title.replace("Velocidad ", "");
         } else {
             chartCombinado.getData().add(seriesVelocidad);
             if(!title.contains("Velocidad "))
@@ -72,7 +73,7 @@ public class CombineViewController implements Initializable {
     private void toggleFCPressed(ActionEvent event) {
         if (toggleFC.isSelected()){
             chartCombinado.getData().remove(seriesFC);
-            title.replace("FC ", "");
+            title = title.replace("FC ", "");
         } else {
             chartCombinado.getData().add(seriesFC);
             if(!title.contains("FC "))
@@ -85,7 +86,7 @@ public class CombineViewController implements Initializable {
     private void toggleCadenciaPressed(ActionEvent event) {
         if (toggleCadencia.isSelected()){
             chartCombinado.getData().remove(seriesCadencia);
-            title.replace("Cadencia ", "");
+            title = title.replace("Cadencia ", "");
         } else {
             chartCombinado.getData().add(seriesCadencia);
             if(!title.contains("Cadencia "))

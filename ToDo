@@ -1,4 +1,6 @@
 Cosas hechas:
+	- Combinar gráficas funciona, pero con un pequeño bug. (Comentado en cosas
+		por hacer)
 	- Al cargar el/los archivo/s se muestran los tracks en el listView.
 	- Al seleccionar uno de los tracks se pueden cambiar las cosas (selectedTrack 
 		tiene el track del seleccionado y del cual se puede sacar informacion).
@@ -7,26 +9,20 @@ Cosas hechas:
 
 Cosas por hacer:
 	- Usar hilos
-	- Hacer la barra de tareas (Combinar y Diario).
+	- Hacer la barra de tareas (Diario).
 	- Redimensionar la parte del scrollpane (cuando se maximiza la ventana
 		no se maximiza esa parte)
 	- Mensaje alerta si pulsas el boton de CombinarGraficas sin ningun track seleccionado.
 
+Bug:
+	- Cuando abre por primera vez la ventana de Combinar la grafica se muestra mas
+		pequeña de lo que deberia ser, si la cierras y la vuelves a abrir se arregla
+		el error. Si le das a alguno de los toggle tambien se arregla.
 
 Sugerencias para el CSS:
 	- Reducir el ancho de linea de los line chart y poner varios colores
 	- Darle borde al HBOX que contiene Label:Graficas y el toggle para hacerlo mas boniko
 
-
 Notas:
 	- Preguntar al tontopoya del profesor lo de los metros si esta mal
-
-
-
---------------> KEVIN <---------------------
-
-He creado el FXML CombineView y su controlador.
-He pensado que lo mejor era que Charts guardara las series que iba haciendo de modo que no tenemos que recalcularlas
-sino que con getSeries() se las pasamos al metodo setSeries() de CombineViewController. La cosa es que no acabo de
-aclararme con la burocracia de los controladores y mierdas, a ver si lo sacas tu. Por lo demas creo que esta bien.
 

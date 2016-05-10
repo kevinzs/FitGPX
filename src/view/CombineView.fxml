@@ -11,7 +11,7 @@
   <children>
     <LineChart fx:id="chartCombinado" layoutX="33.0" layoutY="31.0" legendSide="BOTTOM" prefHeight="429.0" prefWidth="649.0" title="">
       <xAxis>
-        <CategoryAxis side="BOTTOM" />
+        <NumberAxis side="BOTTOM" />
       </xAxis>
       <yAxis>
         <NumberAxis side="LEFT" />

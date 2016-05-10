@@ -60,7 +60,6 @@ public class MainViewController implements Initializable {
     private TrackData selectedTrack;
     private Summary summary;
     private Charts charts;
-    private CombineViewController combineView;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -72,7 +71,6 @@ public class MainViewController implements Initializable {
         tracksList = new TracksList();
         summary = new Summary(this);
         charts = new Charts(this);
-        combineView = new CombineViewController(this);
 
         listView.getSelectionModel().selectedIndexProperty().
                 addListener((o, oldVal, newVal) -> {
@@ -80,7 +78,6 @@ public class MainViewController implements Initializable {
                     summary.setLabels(selectedTrack);
                     charts.setTrackData(selectedTrack);
                     charts.refreshCharts();
-                    combineView.setSeries(charts.getSeries());
                 });
     }
 
@@ -120,6 +117,7 @@ public class MainViewController implements Initializable {
             
             
             ((CombineViewController) miCargador.getController()).setController(this);
+            ((CombineViewController) miCargador.getController()).setSeries(charts.getSeries());
 
             
             Scene scene = new Scene(root);
