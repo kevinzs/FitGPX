@@ -53,24 +53,40 @@ public class Charts{
         controller.chartAltura.setCreateSymbols(false);
         controller.chartAltura.getData().clear();
         controller.chartAltura.getData().addAll(seriesAltura);
+        if (controller.toggleBase.isSelected())
+            controller.chartAltura.setTitle("Altura x Tiempo");
+        else
+            controller.chartAltura.setTitle("Altura x Distancia");
     }
     
     public void setChartVelocidad(){
         controller.chartVelocidad.setCreateSymbols(false);
         controller.chartVelocidad.getData().clear();
         controller.chartVelocidad.getData().addAll(seriesVelocidad);
+        if (controller.toggleBase.isSelected())
+            controller.chartVelocidad.setTitle("Velocidad x Tiempo");
+        else
+            controller.chartVelocidad.setTitle("Velocidad x Distancia");
     }
     
     public void setChartFC(){
         controller.chartFC.setCreateSymbols(false);
         controller.chartFC.getData().clear();
         controller.chartFC.getData().addAll(seriesFC);
+        if (controller.toggleBase.isSelected())
+            controller.chartFC.setTitle("FC x Tiempo");
+        else
+            controller.chartFC.setTitle("FC x Distancia");
     }
         
     public void setChartCadencia(){
         controller.chartCadencia.setCreateSymbols(false);
         controller.chartCadencia.getData().clear();
         controller.chartCadencia.getData().addAll(seriesCadencia);
+        if (controller.toggleBase.isSelected())
+            controller.chartCadencia.setTitle("Cadencia x Tiempo");
+        else
+            controller.chartCadencia.setTitle("Cadencia x Distancia");
     }
     
     public void setChartDistribucion(){
