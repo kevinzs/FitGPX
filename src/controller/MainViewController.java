@@ -18,6 +18,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -27,8 +28,9 @@ import utilities.FileLoader;
 import utilities.TracksList;
 
 public class MainViewController implements Initializable {
-
-    @FXML private BorderPane borderPane;
+    
+    @FXML private ScrollPane scrollPane;
+    @FXML protected BorderPane borderPane;
     @FXML private ListView<String> listView;
     
     @FXML protected Label labelFecha;
@@ -79,6 +81,10 @@ public class MainViewController implements Initializable {
                     charts.setTrackData(selectedTrack);
                     charts.refreshCharts();
                 });
+        
+        scrollPane.widthProperty().addListener(
+                (observable, oldvalue, newvalue) -> borderPane.setPrefWidth((Double)newvalue - 20)
+        );
     }
 
     @FXML
