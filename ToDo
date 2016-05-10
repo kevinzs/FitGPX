@@ -7,22 +7,21 @@ Cosas hechas:
 	- setLabels de Summary.
 	- Graficas hechas.
 	- Redimensionar la parte del scrollpane (cuando se maximiza la ventana
-		no se maximiza esa parte)
+		no se maximiza esa parte)		
+	- Mensaje alerta si pulsas el boton de CombinarGraficas sin ningun track seleccionado.
 
 Cosas por hacer:
 	- Usar hilos
 	- Hacer la barra de tareas (Diario).
-	- Mensaje alerta si pulsas el boton de CombinarGraficas sin ningun track seleccionado.
 
 Bug:
 	- Cuando abre por primera vez la ventana de Combinar la grafica se muestra mas
 		pequeña de lo que deberia ser, si la cierras y la vuelves a abrir se arregla
 		el error. Si le das a alguno de los toggle tambien se arregla.
+	- En Combinar la grafica peta si le das muy rapido a los toggles
 
 Sugerencias para el CSS:
 	- Reducir el ancho de linea de los line chart y poner varios colores
 	- Darle borde al HBOX que contiene Label:Graficas y el toggle para hacerlo mas boniko
 
-Notas:
-	- Preguntar al tontopoya del profesor lo de los metros si esta mal
 
