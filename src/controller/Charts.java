@@ -109,10 +109,10 @@ public class Charts{
                 seriesAltura = new XYChart.Series();
                 int altura = 0;
                 if (controller.toggleBase.isSelected()){
-                        for (int i=0; i<chunks.size(); i++){
-                        updateProgress(i, chunks.size());
-                        altura += chunks.get(i).getDuration().getSeconds();
-                        seriesAltura.getData().add(new XYChart.Data<>(altura, chunks.get(i).getAvgHeight()));
+                    for (int i=0; i<chunks.size(); i++){
+                    updateProgress(i, chunks.size());
+                    altura += chunks.get(i).getDuration().getSeconds();
+                    seriesAltura.getData().add(new XYChart.Data<>(altura, chunks.get(i).getAvgHeight()));
                     }
                 } else {
                     for (int i=0; i<chunks.size(); i++){
