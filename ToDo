@@ -6,12 +6,12 @@ Cosas hechas:
 		tiene el track del seleccionado y del cual se puede sacar informacion).
 	- setLabels de Summary.
 	- Graficas hechas.
+	- Redimensionar la parte del scrollpane (cuando se maximiza la ventana
+		no se maximiza esa parte)
 
 Cosas por hacer:
 	- Usar hilos
 	- Hacer la barra de tareas (Diario).
-	- Redimensionar la parte del scrollpane (cuando se maximiza la ventana
-		no se maximiza esa parte)
 	- Mensaje alerta si pulsas el boton de CombinarGraficas sin ningun track seleccionado.
 
 Bug:
