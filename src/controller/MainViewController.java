@@ -2,20 +2,24 @@ package controller;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import jgpx.model.analysis.TrackData;
@@ -26,7 +30,6 @@ public class MainViewController implements Initializable {
 
     @FXML private BorderPane borderPane;
     @FXML private ListView<String> listView;
-    @FXML private Insets x1;
     
     @FXML protected Label labelFecha;
     @FXML protected Label labelDuracion;
@@ -43,18 +46,11 @@ public class MainViewController implements Initializable {
 
     @FXML protected ToggleButton toggleBase;
     
-    @FXML protected Label labelGraficaAltura;
-    @FXML protected Label labelGraficaVelocidad;
-    @FXML protected Label labelGraficaFC;
-    @FXML protected Label labelGraficaCadencia;
     @FXML protected AreaChart<Number, Number> chartAltura;
-    @FXML protected LineChart<?, ?> chartVelocidad;
-    @FXML protected LineChart<?, ?> chartFC;
-    @FXML protected LineChart<?, ?> chartCadencia;
+    @FXML protected LineChart<Number, Number> chartVelocidad;
+    @FXML protected LineChart<Number, Number> chartFC;
+    @FXML protected LineChart<Number, Number> chartCadencia;
     @FXML protected PieChart chartDistribucion;
-    
-    @FXML protected NumberAxis chartAreaY;
-    @FXML protected NumberAxis chartAreaX;
 
     private Stage stage;
 
@@ -64,7 +60,11 @@ public class MainViewController implements Initializable {
     private TrackData selectedTrack;
     private Summary summary;
     private Charts charts;
+    private CombineViewController combineView;
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -72,40 +72,61 @@ public class MainViewController implements Initializable {
         tracksList = new TracksList();
         summary = new Summary(this);
         charts = new Charts(this);
+        combineView = new CombineViewController(this);
 
         listView.getSelectionModel().selectedIndexProperty().
                 addListener((o, oldVal, newVal) -> {
                     selectedTrack = tracksList.getTrackData((int) newVal);
                     summary.setLabels(selectedTrack);
                     charts.setTrackData(selectedTrack);
-                    charts.setLabels();
                     charts.refreshCharts();
+                    combineView.setSeries(charts.getSeries());
                 });
     }
 
     @FXML
     private void loadAction(ActionEvent event) {
         fileLoader.loadFiles();
-        tracksList.setFiles(fileLoader.getFiles());
-        listView.setItems(tracksList.refreshList());
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
+        if (!fileLoader.getFiles().equals(tracksList.getFiles())){
+            tracksList.setFiles(fileLoader.getFiles());
+            listView.setItems(tracksList.refreshList());
+        }
     }
 
     @FXML
     private void addFileAction(ActionEvent event) {
         fileLoader.addFiles();
-        tracksList.setFiles(fileLoader.getFiles());
-        listView.setItems(tracksList.refreshList());
+        if (fileLoader.hasChanged()){
+            tracksList.setFiles(fileLoader.getFiles());
+            listView.setItems(tracksList.refreshList());
+        }
     }
 
     @FXML
     private void togglePressed(ActionEvent event) {
         if (selectedTrack != null){
-            charts.setLabels();
             charts.refreshCharts();
+        }
+    }
+    
+    @FXML
+    private void combineAction(ActionEvent event) {
+        try {
+            Stage newStage = new Stage();
+            newStage.setTitle("Combinar graficas");
+            
+            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/CombineView.fxml"));
+            AnchorPane root = (AnchorPane) miCargador.load();
+            
+            
+            ((CombineViewController) miCargador.getController()).setController(this);
+
+            
+            Scene scene = new Scene(root);
+            newStage.setScene(scene);
+            newStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

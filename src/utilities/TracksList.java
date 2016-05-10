@@ -27,12 +27,14 @@ public class TracksList {
     
     public TrackData getTrackData(int i) { return tracksList.get(i); }
     
-    public void setFiles(List<File> files){ this.files = files; }
+    public void setFiles(List<File> files) { this.files = files; }
+    
+    public List<File> getFiles() { return this.files; }
 
     public void readFiles() {
-        if(files != null){
+        if (files != null){
             gpxFiles.clear();
-            for(File file : files){
+            for (File file : files){
                 try{
                     JAXBContext jaxbContext = JAXBContext.newInstance(GpxType.class,
                             TrackPointExtensionT.class);
@@ -50,8 +52,8 @@ public class TracksList {
         readFiles();
         tracksList.clear();
         List<String> list = new ArrayList();
-        for(GpxType gpxFile : gpxFiles){
-            for(int i=0; i<gpxFile.getTrk().size(); i++){
+        for (GpxType gpxFile : gpxFiles){
+            for (int i = 0; i < gpxFile.getTrk().size(); i++){
                 list.add(gpxFile.getTrk().get(i).getName());
                 TrackData trackData = new TrackData(new Track(gpxFile.getTrk().get(i)));
                 tracksList.add(trackData);            

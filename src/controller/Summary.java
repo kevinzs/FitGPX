@@ -41,7 +41,7 @@ public class Summary{
     }
     
     public String formatDouble (Double doub) {
-        DecimalFormat df = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("0.00");
         return df.format(doub);
     }
 }
