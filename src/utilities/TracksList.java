@@ -54,7 +54,7 @@ public class TracksList {
                 @Override 
                 protected Void call() throws Exception {
                     for (int i=0; i<files.size(); i++) {
-                        updateProgress(i,files.size()-1);
+                        updateProgress(i+1,files.size());
                         try{
                             JAXBContext jaxbContext = JAXBContext.newInstance(GpxType.class,
                                     TrackPointExtensionT.class);
@@ -105,7 +105,7 @@ public class TracksList {
                 tracksList.clear();
                 List<String> list = new ArrayList();
                 for (int j=0; j<gpxFiles.size(); j++){
-                    updateProgress(j,gpxFiles.size()-1);
+                    updateProgress(j+1,gpxFiles.size());
                     for (int i = 0; i < gpxFiles.get(j).getTrk().size(); i++){
                         list.add(gpxFiles.get(j).getTrk().get(i).getName());
                         TrackData trackData = new TrackData(new Track(gpxFiles.get(j).getTrk().get(i)));
