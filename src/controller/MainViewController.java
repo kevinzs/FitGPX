@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +24,6 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import jgpx.model.analysis.TrackData;
 import utilities.FileLoader;
@@ -72,7 +72,7 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fileLoader = new FileLoader(stage, Desktop.getDesktop());
-        tracksList = new TracksList();
+        tracksList = new TracksList(this);
         summary = new Summary(this);
         charts = new Charts(this);
 
@@ -94,7 +94,7 @@ public class MainViewController implements Initializable {
         fileLoader.loadFiles();
         if (!fileLoader.getFiles().equals(tracksList.getFiles())){
             tracksList.setFiles(fileLoader.getFiles());
-            listView.setItems(tracksList.refreshList());
+            tracksList.refreshList();
         }
     }
 
@@ -103,7 +103,7 @@ public class MainViewController implements Initializable {
         fileLoader.addFiles();
         if (fileLoader.hasChanged()){
             tracksList.setFiles(fileLoader.getFiles());
-            listView.setItems(tracksList.refreshList());
+            tracksList.refreshList();
         }
     }
 
@@ -142,5 +142,9 @@ public class MainViewController implements Initializable {
             alert.setContentText("Cargue y/o seleccione alguna sesión por favor.");
             alert.showAndWait();
         }
+    }
+    
+    public void setListItems(ObservableList<String> data){
+        listView.setItems(data);
     }
 }

@@ -1,10 +1,23 @@
 package utilities;
 
+import controller.LoadingViewController;
+import controller.MainViewController;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -19,10 +32,13 @@ public class TracksList {
     private List<File> files;
     private List<GpxType> gpxFiles;
     private List<TrackData> tracksList;
+    
+    private MainViewController controller;
 
-    public TracksList() {
+    public TracksList(MainViewController controller) {
         gpxFiles = new ArrayList<>();
         tracksList = new ArrayList<>();
+        this.controller = controller;
     }
     
     public TrackData getTrackData(int i) { return tracksList.get(i); }
@@ -31,35 +47,65 @@ public class TracksList {
     
     public List<File> getFiles() { return this.files; }
 
-    public void readFiles() {
+    public void refreshList() {
         if (files != null){
             gpxFiles.clear();
-            for (File file : files){
-                try{
-                    JAXBContext jaxbContext = JAXBContext.newInstance(GpxType.class,
-                            TrackPointExtensionT.class);
-                    Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-                    JAXBElement<Object> root = (JAXBElement<Object>) unmarshaller.unmarshal(file);
-                    gpxFiles.add((GpxType) root.getValue());
-                } catch (JAXBException e){
-                    e.printStackTrace();
+            Task<Void> task = new Task<Void>() {
+                @Override 
+                protected Void call() throws Exception {
+                    for (int i=0; i<files.size(); i++) {
+                        updateProgress(i,files.size()-1);
+                        try{
+                            JAXBContext jaxbContext = JAXBContext.newInstance(GpxType.class,
+                                    TrackPointExtensionT.class);
+                            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+                            JAXBElement<Object> root = (JAXBElement<Object>) unmarshaller.unmarshal(files.get(i));
+                            gpxFiles.add((GpxType) root.getValue());
+                        } catch (JAXBException e){
+                            e.printStackTrace();
+                        }
+                    }
+                    return null;
                 }
-            }
-        }
-    }
+            };
+            
+            task.setOnRunning((WorkerStateEvent event) -> {
+                try {
+                    Stage newStage = new Stage(StageStyle.UNDECORATED);
+                    newStage.setTitle("Cargando...");
 
-    public ObservableList<String> refreshList() {
-        readFiles();
-        tracksList.clear();
-        List<String> list = new ArrayList();
-        for (GpxType gpxFile : gpxFiles){
-            for (int i = 0; i < gpxFile.getTrk().size(); i++){
-                list.add(gpxFile.getTrk().get(i).getName());
-                TrackData trackData = new TrackData(new Track(gpxFile.getTrk().get(i)));
-                tracksList.add(trackData);            
-            }
+                    FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/LoadingView.fxml"));
+                    VBox root = (VBox) miCargador.load();
+
+                    ((LoadingViewController) miCargador.getController()).setCharts(task);
+
+                    Scene scene = new Scene(root);
+                    newStage.setScene(scene);
+                    newStage.initModality(Modality.APPLICATION_MODAL);
+                    newStage.show();
+                } catch (IOException ex) {
+                    Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+            });
+            
+            task.setOnSucceeded((WorkerStateEvent event) -> {
+                tracksList.clear();
+                List<String> list = new ArrayList();
+                for (GpxType gpxFile : gpxFiles){
+                    for (int i = 0; i < gpxFile.getTrk().size(); i++){
+                        list.add(gpxFile.getTrk().get(i).getName());
+                        TrackData trackData = new TrackData(new Track(gpxFile.getTrk().get(i)));
+                        tracksList.add(trackData);            
+                    }
+                }
+                ObservableList<String> data = FXCollections.observableArrayList(list);
+                controller.setListItems(data);
+                
+            });
+            
+            Thread th = new Thread(task);
+            th.setDaemon(true);
+            th.start();
         }
-        ObservableList<String> data = FXCollections.observableArrayList(list);
-        return data;
     }
 }
