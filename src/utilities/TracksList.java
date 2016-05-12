@@ -47,7 +47,7 @@ public class TracksList {
     
     public List<File> getFiles() { return this.files; }
 
-    public void refreshList() {
+    public void loadFiles() {
         if (files != null){
             gpxFiles.clear();
             Task<Void> task = new Task<Void>() {
@@ -89,23 +89,56 @@ public class TracksList {
             });
             
             task.setOnSucceeded((WorkerStateEvent event) -> {
-                tracksList.clear();
-                List<String> list = new ArrayList();
-                for (GpxType gpxFile : gpxFiles){
-                    for (int i = 0; i < gpxFile.getTrk().size(); i++){
-                        list.add(gpxFile.getTrk().get(i).getName());
-                        TrackData trackData = new TrackData(new Track(gpxFile.getTrk().get(i)));
-                        tracksList.add(trackData);            
-                    }
-                }
-                ObservableList<String> data = FXCollections.observableArrayList(list);
-                controller.setListItems(data);
-                
+                refreshList();
             });
             
             Thread th = new Thread(task);
             th.setDaemon(true);
             th.start();
         }
+    }
+    
+    public void refreshList(){
+        Task<Void> task = new Task<Void>() {
+            @Override 
+            protected Void call() throws Exception {
+                tracksList.clear();
+                List<String> list = new ArrayList();
+                for (int j=0; j<gpxFiles.size(); j++){
+                    updateProgress(j,gpxFiles.size()-1);
+                    for (int i = 0; i < gpxFiles.get(j).getTrk().size(); i++){
+                        list.add(gpxFiles.get(j).getTrk().get(i).getName());
+                        TrackData trackData = new TrackData(new Track(gpxFiles.get(j).getTrk().get(i)));
+                        tracksList.add(trackData);            
+                    }
+                }
+                ObservableList<String> data = FXCollections.observableArrayList(list);
+                controller.setListItems(data);
+                return null;
+            }
+        };
+            
+        task.setOnRunning((WorkerStateEvent event) -> {
+            try {
+                Stage newStage = new Stage(StageStyle.UNDECORATED);
+                newStage.setTitle("Cargando...");
+
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/LoadingView.fxml"));
+                VBox root = (VBox) miCargador.load();
+
+                ((LoadingViewController) miCargador.getController()).setCharts(task);
+
+                Scene scene = new Scene(root);
+                newStage.setScene(scene);
+                newStage.initModality(Modality.APPLICATION_MODAL);
+                newStage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        });
+
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
     }
 }

@@ -94,7 +94,7 @@ public class MainViewController implements Initializable {
         fileLoader.loadFiles();
         if (!fileLoader.getFiles().equals(tracksList.getFiles())){
             tracksList.setFiles(fileLoader.getFiles());
-            tracksList.refreshList();
+            tracksList.loadFiles();
         }
     }
 
@@ -103,7 +103,7 @@ public class MainViewController implements Initializable {
         fileLoader.addFiles();
         if (fileLoader.hasChanged()){
             tracksList.setFiles(fileLoader.getFiles());
-            tracksList.refreshList();
+            tracksList.loadFiles();
         }
     }
 

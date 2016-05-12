@@ -10,13 +10,11 @@ Cosas hechas:
 		no se maximiza esa parte)		
 	- Mensaje alerta si pulsas el boton de CombinarGraficas sin ningun track seleccionado.
 	- Creado un hilo para la carga de los ficheros.
+	- Creado un hilo para la actualizacion de la listView.
 
 Cosas por hacer:
 	- Usar hilos
 	- Hacer la barra de tareas (Diario).
-	- Al cargar los ficheros en la lista no aparecen justo al terminar la carga, si es una
-		lista larga tardara un poco. Hay que hacer un hilo para que salga la carga de la
-		lista tambien.
 
 Bug:
 	- Cuando abre por primera vez la ventana de Combinar la grafica se muestra mas
