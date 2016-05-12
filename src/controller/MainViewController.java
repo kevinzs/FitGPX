@@ -16,12 +16,14 @@ import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import jgpx.model.analysis.TrackData;
 import utilities.FileLoader;
@@ -114,23 +116,31 @@ public class MainViewController implements Initializable {
     
     @FXML
     private void combineAction(ActionEvent event) {
-        try {
-            Stage newStage = new Stage();
-            newStage.setTitle("Combinar graficas");
-            
-            FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/CombineView.fxml"));
-            AnchorPane root = (AnchorPane) miCargador.load();
-            
-            
-            ((CombineViewController) miCargador.getController()).setController(this);
-            ((CombineViewController) miCargador.getController()).setSeries(charts.getSeries());
+        if (charts.getSeries().get(0) != null){
+            try {
+                Stage newStage = new Stage();
+                newStage.setTitle("Combinar graficas");
 
-            
-            Scene scene = new Scene(root);
-            newStage.setScene(scene);
-            newStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/CombineView.fxml"));
+                AnchorPane root = (AnchorPane) miCargador.load();
+
+
+                ((CombineViewController) miCargador.getController()).setController(this);
+                ((CombineViewController) miCargador.getController()).setSeries(charts.getSeries());
+
+
+                Scene scene = new Scene(root);
+                newStage.setScene(scene);
+                newStage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Ninguna sesión seleccionada.");
+            alert.setContentText("Cargue y/o seleccione alguna sesión por favor.");
+            alert.showAndWait();
         }
     }
 }

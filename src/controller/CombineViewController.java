@@ -33,8 +33,7 @@ public class CombineViewController implements Initializable {
         seriesVelocidad = list.get(0);
         seriesFC = list.get(1);
         seriesCadencia = list.get(2);
-        
-        
+          
         seriesVelocidad.setName("Velocidad");
         seriesFC.setName("Frecuencia Cardiaca");
         seriesCadencia.setName("Cadencia");
@@ -47,14 +46,13 @@ public class CombineViewController implements Initializable {
         else
             title += "x Distancia";
         
-        chartCombinado.getData().addAll(seriesVelocidad, seriesCadencia, seriesFC);
         chartCombinado.setTitle(title);
+        chartCombinado.getData().addAll(seriesVelocidad, seriesCadencia, seriesFC);
+
     }    
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-    }    
+    public void initialize(URL url, ResourceBundle rb) {}    
     
     @FXML
     private void toggleVelocidadPressed(ActionEvent event) {
@@ -66,7 +64,10 @@ public class CombineViewController implements Initializable {
             if(!title.contains("Velocidad "))
                 title = "Velocidad " + title;
         }
-        chartCombinado.setTitle(title);
+        if (toggleVelocidad.isSelected() && toggleFC.isSelected() && toggleCadencia.isSelected())
+            chartCombinado.setTitle("");
+        else
+            chartCombinado.setTitle(title);
     }
     
     @FXML
@@ -79,7 +80,10 @@ public class CombineViewController implements Initializable {
             if(!title.contains("FC "))
                 title = "FC " + title;
         }
-        chartCombinado.setTitle(title);;
+        if (toggleVelocidad.isSelected() && toggleFC.isSelected() && toggleCadencia.isSelected())
+            chartCombinado.setTitle("");
+        else
+            chartCombinado.setTitle(title);
     }
     
     @FXML
@@ -92,6 +96,9 @@ public class CombineViewController implements Initializable {
             if(!title.contains("Cadencia "))
                 title = "Cadencia " + title;
         }
-        chartCombinado.setTitle(title);
+        if (toggleVelocidad.isSelected() && toggleFC.isSelected() && toggleCadencia.isSelected())
+            chartCombinado.setTitle("");
+        else
+            chartCombinado.setTitle(title);
     }
 }
