@@ -17,15 +17,15 @@ public class Summary{
     public void setLabels(TrackData track){
         controller.labelFecha.setText(track.getStartTime().toString().substring(0,10));
         controller.labelDuracion.setText(formatDuration(track.getTotalDuration()));
-        controller.labelVelocidadMaxima.setText(formatDouble(track.getMaxSpeed()) + " Km/h");
-        controller.labelVelocidadMedia.setText(formatDouble(track.getAverageSpeed()) + " Km/h");
+        controller.labelVelocidadMaxima.setText(formatDouble((track.getMaxSpeed()*18)/5) + " Km/h");
+        controller.labelVelocidadMedia.setText(formatDouble((track.getMaxSpeed()*18)/5) + " Km/h");
         controller.labelFCMaxima.setText(track.getMaxHeartrate() + " PPM");
         controller.labelFCMinima.setText(track.getMinHeartRate() + " PPM");
         controller.labelFCMedia.setText(track.getAverageHeartrate() + " PPM");
         controller.labelCPMaxima.setText(track.getMaxCadence() + " Pedaleadas/m");
         controller.labelCPMedia.setText(track.getAverageCadence() + " Pedaleadas/m");
         controller.labelDesnivel.setText(formatDouble(track.getTotalAscent() - track.getTotalDescend()) + " m");   
-        controller.labelDistanciaRecorrida.setText(formatDouble(track.getTotalDistance()) + " Km");
+        controller.labelDistanciaRecorrida.setText(formatDouble(track.getTotalDistance() / 1e3) + " Km");
         controller.labelTiempoMovimiento.setText(formatDuration(track.getMovingTime()));
     }
     
@@ -41,7 +41,7 @@ public class Summary{
     }
     
     public String formatDouble (Double doub) {
-        DecimalFormat df = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("0.00");
         return df.format(doub);
     }
 }

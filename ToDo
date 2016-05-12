@@ -1,21 +1,29 @@
 Cosas hechas:
+	- Combinar gráficas funciona, pero con un pequeño bug. (Comentado en cosas
+		por hacer)
 	- Al cargar el/los archivo/s se muestran los tracks en el listView.
 	- Al seleccionar uno de los tracks se pueden cambiar las cosas (selectedTrack 
 		tiene el track del seleccionado y del cual se puede sacar informacion).
 	- setLabels de Summary.
 	- Graficas hechas.
+	- Redimensionar la parte del scrollpane (cuando se maximiza la ventana
+		no se maximiza esa parte)		
+	- Mensaje alerta si pulsas el boton de CombinarGraficas sin ningun track seleccionado.
+	- Creado un hilo para la carga de los ficheros.
+	- Creado un hilo para la actualizacion de la listView.
 
 Cosas por hacer:
 	- Usar hilos
-	- Hacer la barra de tareas.
-	- Redimensionar la parte del scrollpane (cuando se maximiza la ventana
-		no se maximiza esa parte)
+	- Hacer la barra de tareas (Diario).
 
+Bug:
+	- Cuando abre por primera vez la ventana de Combinar la grafica se muestra mas
+		pequeña de lo que deberia ser, si la cierras y la vuelves a abrir se arregla
+		el error. Si le das a alguno de los toggle tambien se arregla.
+	- En Combinar la grafica peta si le das muy rapido a los toggles
 
 Sugerencias para el CSS:
 	- Reducir el ancho de linea de los line chart y poner varios colores
 	- Darle borde al HBOX que contiene Label:Graficas y el toggle para hacerlo mas boniko
 
 
-Notas:
-	- Preguntar al tontopoya del profesor lo de los metros si esta mal

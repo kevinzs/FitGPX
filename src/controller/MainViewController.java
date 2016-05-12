@@ -2,18 +2,27 @@ package controller;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import jgpx.model.analysis.TrackData;
@@ -21,8 +30,9 @@ import utilities.FileLoader;
 import utilities.TracksList;
 
 public class MainViewController implements Initializable {
-
-    @FXML private BorderPane borderPane;
+    
+    @FXML private ScrollPane scrollPane;
+    @FXML protected BorderPane borderPane;
     @FXML private ListView<String> listView;
     
     @FXML protected Label labelFecha;
@@ -62,7 +72,7 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fileLoader = new FileLoader(stage, Desktop.getDesktop());
-        tracksList = new TracksList();
+        tracksList = new TracksList(this);
         summary = new Summary(this);
         charts = new Charts(this);
 
@@ -73,6 +83,10 @@ public class MainViewController implements Initializable {
                     charts.setTrackData(selectedTrack);
                     charts.refreshCharts();
                 });
+        
+        scrollPane.widthProperty().addListener(
+                (observable, oldvalue, newvalue) -> borderPane.setPrefWidth((Double)newvalue - 20)
+        );
     }
 
     @FXML
@@ -80,7 +94,7 @@ public class MainViewController implements Initializable {
         fileLoader.loadFiles();
         if (!fileLoader.getFiles().equals(tracksList.getFiles())){
             tracksList.setFiles(fileLoader.getFiles());
-            listView.setItems(tracksList.refreshList());
+            tracksList.loadFiles();
         }
     }
 
@@ -89,7 +103,7 @@ public class MainViewController implements Initializable {
         fileLoader.addFiles();
         if (fileLoader.hasChanged()){
             tracksList.setFiles(fileLoader.getFiles());
-            listView.setItems(tracksList.refreshList());
+            tracksList.loadFiles();
         }
     }
 
@@ -98,5 +112,39 @@ public class MainViewController implements Initializable {
         if (selectedTrack != null){
             charts.refreshCharts();
         }
+    }
+    
+    @FXML
+    private void combineAction(ActionEvent event) {
+        if (charts.getSeries().get(0) != null){
+            try {
+                Stage newStage = new Stage();
+                newStage.setTitle("Combinar graficas");
+
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/CombineView.fxml"));
+                AnchorPane root = (AnchorPane) miCargador.load();
+
+
+                ((CombineViewController) miCargador.getController()).setController(this);
+                ((CombineViewController) miCargador.getController()).setSeries(charts.getSeries());
+
+
+                Scene scene = new Scene(root);
+                newStage.setScene(scene);
+                newStage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Ninguna sesión seleccionada.");
+            alert.setContentText("Cargue y/o seleccione alguna sesión por favor.");
+            alert.showAndWait();
+        }
+    }
+    
+    public void setListItems(ObservableList<String> data){
+        listView.setItems(data);
     }
 }
