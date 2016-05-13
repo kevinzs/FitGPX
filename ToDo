@@ -15,6 +15,7 @@ Cosas hechas:
 Cosas por hacer:
 	- Usar hilos
 	- Hacer la barra de tareas (Diario).
+	- Fijar tamaños minimos a las ventanas.
 
 Bug:
 	- Cuando abre por primera vez la ventana de Combinar la grafica se muestra mas

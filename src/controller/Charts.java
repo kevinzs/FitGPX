@@ -110,13 +110,13 @@ public class Charts{
                 int altura = 0;
                 if (controller.toggleBase.isSelected()){
                     for (int i=0; i<chunks.size(); i++){
-                        updateProgress(i, chunks.size());
+                        updateProgress(i+1, chunks.size());
                         altura += chunks.get(i).getDuration().getSeconds();
                         seriesAltura.getData().add(new XYChart.Data<>(altura, chunks.get(i).getAvgHeight()));
                     }
                 } else {
                     for (int i=0; i<chunks.size(); i++){
-                        updateProgress(i, chunks.size());
+                        updateProgress(i+1, chunks.size());
                         altura += chunks.get(i).getDistance();
                         seriesAltura.getData().add(new XYChart.Data<>(altura, chunks.get(i).getAvgHeight()));
                     }
@@ -136,13 +136,13 @@ public class Charts{
                 int velocidad = 0;
                 if (controller.toggleBase.isSelected()){
                     for (int i=0; i<chunks.size(); i++){
-                        updateProgress(i, chunks.size());
+                        updateProgress(i+1, chunks.size());
                         velocidad += chunks.get(i).getDuration().getSeconds();
                         seriesVelocidad.getData().add(new XYChart.Data<>(velocidad, chunks.get(i).getSpeed()));
                     }
                 } else {
                     for (int i=0; i<chunks.size(); i++){
-                        updateProgress(i, chunks.size());
+                        updateProgress(i+1, chunks.size());
                         velocidad += chunks.get(i).getDistance();
                         seriesVelocidad.getData().add(new XYChart.Data<>(velocidad, chunks.get(i).getSpeed()));
                     }
@@ -162,13 +162,13 @@ public class Charts{
                 int fc = 0;
                 if (controller.toggleBase.isSelected()){
                     for (int i=0; i<chunks.size(); i++){
-                        updateProgress(i, chunks.size());
+                        updateProgress(i+1, chunks.size());
                         fc += chunks.get(i).getDuration().getSeconds();
                         seriesFC.getData().add(new XYChart.Data<>(fc, chunks.get(i).getAvgHeartRate()));
                     }
                 } else {
                     for (int i=0; i<chunks.size(); i++){
-                        updateProgress(i, chunks.size());
+                        updateProgress(i+1, chunks.size());
                         fc += chunks.get(i).getDistance();
                         seriesFC.getData().add(new XYChart.Data<>(fc, chunks.get(i).getAvgHeartRate()));
                     }
@@ -188,13 +188,13 @@ public class Charts{
                 int cadencia = 0;
                 if (controller.toggleBase.isSelected()){
                     for (int i=0; i<chunks.size(); i++){
-                        updateProgress(i, chunks.size());
+                        updateProgress(i+1, chunks.size());
                         cadencia += chunks.get(i).getDuration().getSeconds();
                         seriesCadencia.getData().add(new XYChart.Data<>(cadencia, chunks.get(i).getAvgCadence()));
                     }
                 } else {
                     for (int i=0; i<chunks.size(); i++){
-                        updateProgress(i, chunks.size());
+                        updateProgress(i+1, chunks.size());
                         cadencia += chunks.get(i).getDistance();
                         seriesCadencia.getData().add(new XYChart.Data<>(cadencia, chunks.get(i).getAvgCadence()));
                     }
@@ -232,7 +232,7 @@ public class Charts{
                 maxFC = track.getMaxHeartrate();
                 z1 = z2 = z3 = z4 = z5 = 0;
                 for (int i=0; i<chunks.size();i++){
-                    updateProgress(i, chunks.size());
+                    updateProgress(i+1, chunks.size());
                     double FC = chunks.get(i).getAvgHeartRate();
                     double percent = (FC/maxFC);
                     if (percent < 0.6)

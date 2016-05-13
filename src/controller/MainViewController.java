@@ -144,6 +144,31 @@ public class MainViewController implements Initializable {
         }
     }
     
+    @FXML
+    private void diaryAction(ActionEvent event) {
+        if(listView.getSelectionModel().selectedItemProperty() != null){
+            try {
+                Stage newStage = new Stage();
+                newStage.setTitle("Diario de Actividad");
+
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/ActivityDiaryView.fxml"));
+                AnchorPane root = (AnchorPane) miCargador.load();
+
+                Scene scene = new Scene(root);
+                newStage.setScene(scene);
+                newStage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Ninguna sesión seleccionada.");
+            alert.setContentText("Cargue y/o seleccione alguna sesión por favor.");
+            alert.showAndWait();
+        }
+    }
+    
     public void setListItems(ObservableList<String> data){
         listView.setItems(data);
     }
