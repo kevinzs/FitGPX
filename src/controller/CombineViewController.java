@@ -3,6 +3,9 @@ package controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -68,6 +71,11 @@ public class CombineViewController implements Initializable {
             chartCombinado.setTitle("");
         else
             chartCombinado.setTitle(title);
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CombineViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @FXML
@@ -84,6 +92,11 @@ public class CombineViewController implements Initializable {
             chartCombinado.setTitle("");
         else
             chartCombinado.setTitle(title);
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CombineViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @FXML
@@ -100,5 +113,10 @@ public class CombineViewController implements Initializable {
             chartCombinado.setTitle("");
         else
             chartCombinado.setTitle(title);
+        try {
+            TimeUnit.MILLISECONDS.sleep(500);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(CombineViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
