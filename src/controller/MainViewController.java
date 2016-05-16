@@ -122,7 +122,7 @@ public class MainViewController implements Initializable {
                 newStage.setTitle("Combinar graficas");
 
                 FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/CombineView.fxml"));
-                AnchorPane root = (AnchorPane) miCargador.load();
+                BorderPane root = (BorderPane) miCargador.load();
 
 
                 ((CombineViewController) miCargador.getController()).setController(this);

@@ -2,10 +2,6 @@ Cosas por hacer:
 	- Usar hilos
 	- Hacer la barra de tareas (Diario).
 	- Fijar tamaños minimos a las ventanas.
-	- Hacer que CombineView no sea resizable o meter las cosas en contenedores para que escale bien.
-
-Bug:
-	- Programa peta al cargar un archivo y despues otro.
 
 Sugerencias para el CSS:
 	- Reducir el ancho de linea de los line chart y poner varios colores
