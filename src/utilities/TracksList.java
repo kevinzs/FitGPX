@@ -34,6 +34,8 @@ public class TracksList {
     private List<TrackData> tracksList;
     
     private MainViewController controller;
+    
+    private ObservableList<String> data;
 
     public TracksList(MainViewController controller) {
         gpxFiles = new ArrayList<>();
@@ -112,8 +114,7 @@ public class TracksList {
                         tracksList.add(trackData);            
                     }
                 }
-                ObservableList<String> data = FXCollections.observableArrayList(list);
-                controller.setListItems(data);
+                data = FXCollections.observableArrayList(list);
                 return null;
             }
         };
@@ -135,6 +136,10 @@ public class TracksList {
             } catch (IOException ex) {
                 Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
             } 
+        });
+        
+        task.setOnSucceeded((WorkerStateEvent event) -> {
+                controller.setListItems(data);
         });
 
         Thread th = new Thread(task);
