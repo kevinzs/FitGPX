@@ -107,6 +107,7 @@ public class Charts{
             @Override 
             protected Void call() throws Exception {
                 seriesAltura = new XYChart.Series();
+                //controller.xAxisAltura.setUpperBound((double) LONGITUD);
                 int altura = 0;
                 if (controller.toggleBase.isSelected()){
                     for (int i=0; i<chunks.size(); i++){
@@ -133,6 +134,7 @@ public class Charts{
             @Override 
             protected Void call() throws Exception {
                 seriesVelocidad = new XYChart.Series();
+                //controller.xAxisVelocidad.setUpperBound((double) LONGITUD);
                 int velocidad = 0;
                 if (controller.toggleBase.isSelected()){
                     for (int i=0; i<chunks.size(); i++){
@@ -159,6 +161,7 @@ public class Charts{
             @Override 
             protected Void call() throws Exception {
                 seriesFC = new XYChart.Series();
+                //controller.xAxisFC.setUpperBound((double) LONGITUD);
                 int fc = 0;
                 if (controller.toggleBase.isSelected()){
                     for (int i=0; i<chunks.size(); i++){
@@ -185,6 +188,7 @@ public class Charts{
             @Override 
             protected Void call() throws Exception {
                 seriesCadencia = new XYChart.Series();
+                //controller.xAxisCadencia.setUpperBound((double) LONGITUD);
                 int cadencia = 0;
                 if (controller.toggleBase.isSelected()){
                     for (int i=0; i<chunks.size(); i++){

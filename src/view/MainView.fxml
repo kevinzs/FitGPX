@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -12,15 +16,17 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controller.MainViewController">
   <center>
     <ScrollPane fx:id="scrollPane" prefHeight="1000.0" prefWidth="700.0" BorderPane.alignment="CENTER">
       <content>
@@ -55,7 +61,7 @@
                 </HBox>
                 <AreaChart fx:id="chartAltura" maxHeight="-Infinity" prefHeight="175.0" prefWidth="776.0">
                   <xAxis>
-                    <NumberAxis id="chartAreaX" side="BOTTOM" />
+                    <NumberAxis id="chartAreaX" fx:id="xAxisAltura" autoRanging="false" side="BOTTOM" tickUnit="1000.0" upperBound="20000.0" />
                   </xAxis>
                   <yAxis>
                     <NumberAxis id="chartAreaY" side="LEFT" />
@@ -63,15 +69,15 @@
                 </AreaChart>
                 <LineChart fx:id="chartVelocidad" prefHeight="175.0">
                   <xAxis>
-                    <NumberAxis side="BOTTOM" />
+                    <NumberAxis id="axis" fx:id="xAxisVelocidad" autoRanging="false" side="BOTTOM" tickUnit="1000.0" upperBound="20000.0" />
                   </xAxis>
                   <yAxis>
-                    <NumberAxis side="LEFT" />
+                    <NumberAxis autoRanging="true" forceZeroInRange="true" side="LEFT" />
                   </yAxis>
                 </LineChart>
                 <LineChart fx:id="chartFC" prefHeight="175.0">
                   <xAxis>
-                    <NumberAxis side="BOTTOM" />
+                    <NumberAxis fx:id="xAxisFC" autoRanging="false" side="BOTTOM" tickUnit="1000.0" upperBound="20000.0" />
                   </xAxis>
                   <yAxis>
                     <NumberAxis side="LEFT" />
@@ -79,7 +85,7 @@
                 </LineChart>
                 <LineChart fx:id="chartCadencia" prefHeight="175.0">
                   <xAxis>
-                    <NumberAxis side="BOTTOM" />
+                    <NumberAxis fx:id="xAxisCadencia" autoRanging="false" side="BOTTOM" tickUnit="1000.0" upperBound="20000.0" />
                   </xAxis>
                   <yAxis>
                     <NumberAxis side="LEFT" />

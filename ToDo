@@ -18,9 +18,6 @@ Cosas por hacer:
 	- Fijar tamaños minimos a las ventanas.
 
 Bug:
-	- Cuando abre por primera vez la ventana de Combinar la grafica se muestra mas
-		pequeña de lo que deberia ser, si la cierras y la vuelves a abrir se arregla
-		el error. Si le das a alguno de los toggle tambien se arregla.
 	- Programa peta al cargar un archivo y despues otro.
 
 Sugerencias para el CSS:
