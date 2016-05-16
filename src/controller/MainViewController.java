@@ -22,7 +22,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import jgpx.model.analysis.TrackData;
@@ -132,6 +131,9 @@ public class MainViewController implements Initializable {
                 Scene scene = new Scene(root);
                 newStage.setScene(scene);
                 newStage.show();
+                
+                newStage.setMinWidth(newStage.getWidth());
+                newStage.setMinHeight(newStage.getHeight()+20);
             } catch (IOException ex) {
                 Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -152,11 +154,14 @@ public class MainViewController implements Initializable {
                 newStage.setTitle("Diario de Actividad");
 
                 FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/ActivityDiaryView.fxml"));
-                AnchorPane root = (AnchorPane) miCargador.load();
+                BorderPane root = (BorderPane) miCargador.load();
 
                 Scene scene = new Scene(root);
                 newStage.setScene(scene);
                 newStage.show();
+                
+                newStage.setMinWidth(newStage.getWidth());
+                newStage.setMinHeight(newStage.getHeight()+20);
             } catch (IOException ex) {
                 Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
             }
