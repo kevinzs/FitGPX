@@ -16,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -56,10 +55,6 @@ public class MainViewController implements Initializable {
     @FXML protected LineChart<Number, Number> chartFC;
     @FXML protected LineChart<Number, Number> chartCadencia;
     @FXML protected PieChart chartDistribucion;
-    @FXML protected NumberAxis xAxisVelocidad;
-    @FXML protected NumberAxis xAxisAltura;
-    @FXML protected NumberAxis xAxisFC;
-    @FXML protected NumberAxis xAxisCadencia;
 
     private Stage stage;
 
