@@ -25,7 +25,7 @@ public class FitGPX extends Application {
         stage.show();
         
         stage.setMinWidth(stage.getWidth());
-        stage.setMinHeight(stage.getHeight()+20);
+        stage.setMinHeight(stage.getHeight()+30);
     }
 
     public static void main(String[] args) {

@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -23,6 +24,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import jgpx.model.analysis.TrackData;
 import utilities.FileLoader;
@@ -133,7 +135,7 @@ public class MainViewController implements Initializable {
                 newStage.show();
                 
                 newStage.setMinWidth(newStage.getWidth());
-                newStage.setMinHeight(newStage.getHeight()+20);
+                newStage.setMinHeight(newStage.getHeight()+30);
             } catch (IOException ex) {
                 Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -161,7 +163,7 @@ public class MainViewController implements Initializable {
                 newStage.show();
                 
                 newStage.setMinWidth(newStage.getWidth());
-                newStage.setMinHeight(newStage.getHeight()+20);
+                newStage.setMinHeight(newStage.getHeight()+30);
             } catch (IOException ex) {
                 Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
             }

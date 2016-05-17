@@ -11,12 +11,15 @@ import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.chart.Axis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.StringConverter;
 import jgpx.model.analysis.Chunk;
 import jgpx.model.analysis.TrackData;
 
@@ -53,40 +56,145 @@ public class Charts{
         controller.chartAltura.setCreateSymbols(false);
         controller.chartAltura.getData().clear();
         controller.chartAltura.getData().addAll(seriesAltura);
-        if (controller.toggleBase.isSelected())
+        NumberAxis xAxis = (NumberAxis) controller.chartAltura.getXAxis();
+        if (controller.toggleBase.isSelected()){
             controller.chartAltura.setTitle("Altura x Tiempo");
-        else
+            xAxis.setTickLabelFormatter(new StringConverter<Number>() {
+                @Override
+                public String toString(Number object) {
+                    return object.intValue()/3600 + ":" 
+                            + (object.intValue()%3600)/60 +":"
+                            + (object.intValue()%3600)%60;
+                }
+
+                @Override
+                public Number fromString(String string) {
+                    return 0;
+                }
+            });
+        }
+        else{
             controller.chartAltura.setTitle("Altura x Distancia");
+            xAxis.setTickLabelFormatter(new StringConverter<Number>() {
+                @Override
+                public String toString(Number object) {
+                    return "" + object.intValue()/1000;
+                }
+
+                @Override
+                public Number fromString(String string) {
+                    return 0;
+                }
+            });
+        }
     }
     
     public void setChartVelocidad(){
         controller.chartVelocidad.setCreateSymbols(false);
         controller.chartVelocidad.getData().clear();
         controller.chartVelocidad.getData().addAll(seriesVelocidad);
-        if (controller.toggleBase.isSelected())
+        NumberAxis xAxis = (NumberAxis) controller.chartVelocidad.getXAxis();
+        if (controller.toggleBase.isSelected()){
             controller.chartVelocidad.setTitle("Velocidad x Tiempo");
-        else
+            xAxis.setTickLabelFormatter(new StringConverter<Number>() {
+                @Override
+                public String toString(Number object) {
+                    return object.intValue()/3600 + ":" 
+                            + (object.intValue()%3600)/60 +":"
+                            + (object.intValue()%3600)%60;
+                }
+
+                @Override
+                public Number fromString(String string) {
+                    return 0;
+                }
+            });
+        } else {
             controller.chartVelocidad.setTitle("Velocidad x Distancia");
+            xAxis.setTickLabelFormatter(new StringConverter<Number>() {
+                @Override
+                public String toString(Number object) {
+                    return "" + object.intValue()/1000;
+                }
+
+                @Override
+                public Number fromString(String string) {
+                    return 0;
+                }
+            });
+        }
     }
     
     public void setChartFC(){
         controller.chartFC.setCreateSymbols(false);
         controller.chartFC.getData().clear();
         controller.chartFC.getData().addAll(seriesFC);
-        if (controller.toggleBase.isSelected())
+        NumberAxis xAxis = (NumberAxis) controller.chartFC.getXAxis();
+        if (controller.toggleBase.isSelected()){
             controller.chartFC.setTitle("FC x Tiempo");
-        else
+            xAxis.setTickLabelFormatter(new StringConverter<Number>() {
+                @Override
+                public String toString(Number object) {
+                    return object.intValue()/3600 + ":" 
+                            + (object.intValue()%3600)/60 +":"
+                            + (object.intValue()%3600)%60;
+                }
+
+                @Override
+                public Number fromString(String string) {
+                    return 0;
+                }
+            });
+        } else {
             controller.chartFC.setTitle("FC x Distancia");
+            xAxis.setTickLabelFormatter(new StringConverter<Number>() {
+                @Override
+                public String toString(Number object) {
+                    return "" + object.intValue()/1000;
+                }
+
+                @Override
+                public Number fromString(String string) {
+                    return 0;
+                }
+            });
+        }
     }
         
     public void setChartCadencia(){
         controller.chartCadencia.setCreateSymbols(false);
         controller.chartCadencia.getData().clear();
         controller.chartCadencia.getData().addAll(seriesCadencia);
-        if (controller.toggleBase.isSelected())
+        NumberAxis xAxis = (NumberAxis) controller.chartCadencia.getXAxis();
+        if (controller.toggleBase.isSelected()){
             controller.chartCadencia.setTitle("Cadencia x Tiempo");
-        else
+            xAxis.setTickLabelFormatter(new StringConverter<Number>() {
+                @Override
+                public String toString(Number object) {
+                    return object.intValue()/3600 + ":" 
+                            + (object.intValue()%3600)/60 +":"
+                            + (object.intValue()%3600)%60;
+                }
+
+                @Override
+                public Number fromString(String string) {
+                    return 0;
+                }
+            });
+        } else {
             controller.chartCadencia.setTitle("Cadencia x Distancia");
+            xAxis.setTickLabelFormatter(new StringConverter<Number>() {
+                @Override
+                public String toString(Number object) {
+                    return "" + object.intValue()/1000;
+                }
+
+                @Override
+                public Number fromString(String string) {
+                    return 0;
+                }
+            });
+        }
     }
     
     public void setChartDistribucion(){

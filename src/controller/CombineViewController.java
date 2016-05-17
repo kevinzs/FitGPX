@@ -10,8 +10,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ToggleButton;
+import javafx.util.StringConverter;
 
 public class CombineViewController implements Initializable {
 
@@ -43,11 +45,38 @@ public class CombineViewController implements Initializable {
         
         chartCombinado.setCreateSymbols(false);
         
+        NumberAxis xAxis = (NumberAxis) chartCombinado.getXAxis();
+        
         title = "Velocidad FC Cadencia ";
-        if (controller.toggleBase.isSelected())
+        if (controller.toggleBase.isSelected()){
             title += "x Tiempo";
-        else
+            xAxis.setTickLabelFormatter(new StringConverter<Number>() {
+                @Override
+                public String toString(Number object) {
+                    return object.intValue()/3600 + ":" 
+                            + (object.intValue()%3600)/60 +":"
+                            + (object.intValue()%3600)%60;
+                }
+
+                @Override
+                public Number fromString(String string) {
+                    return 0;
+                }
+            });
+        } else {
             title += "x Distancia";
+            xAxis.setTickLabelFormatter(new StringConverter<Number>() {
+                @Override
+                public String toString(Number object) {
+                    return "" + object.intValue()/1000;
+                }
+
+                @Override
+                public Number fromString(String string) {
+                    return 0;
+                }
+            });
+        }
         
         chartCombinado.setTitle(title);
         chartCombinado.getData().addAll(seriesVelocidad, seriesCadencia, seriesFC);
