@@ -44,6 +44,7 @@ public class TracksList {
     }
     
     public TrackData getTrackData(int i) { return tracksList.get(i); }
+    public List<TrackData> getTracks() { return this.tracksList; }
     
     public void setFiles(List<File> files) { this.files = files; }
     

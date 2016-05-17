@@ -16,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -24,7 +23,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import jgpx.model.analysis.TrackData;
 import utilities.FileLoader;
@@ -61,7 +59,6 @@ public class MainViewController implements Initializable {
 
     private FileLoader fileLoader;
     private TracksList tracksList;
-    private List<File> files;
     private TrackData selectedTrack;
     private Summary summary;
     private Charts charts;
@@ -125,10 +122,8 @@ public class MainViewController implements Initializable {
                 FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/CombineView.fxml"));
                 BorderPane root = (BorderPane) miCargador.load();
 
-
                 ((CombineViewController) miCargador.getController()).setController(this);
                 ((CombineViewController) miCargador.getController()).setSeries(charts.getSeries());
-
 
                 Scene scene = new Scene(root);
                 newStage.setScene(scene);
@@ -157,6 +152,8 @@ public class MainViewController implements Initializable {
 
                 FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/ActivityDiaryView.fxml"));
                 BorderPane root = (BorderPane) miCargador.load();
+                
+                ((ActivityDiaryViewController) miCargador.getController()).setTracksList(tracksList);
 
                 Scene scene = new Scene(root);
                 newStage.setScene(scene);
