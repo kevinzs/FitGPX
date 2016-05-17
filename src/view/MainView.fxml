@@ -12,6 +12,8 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -177,10 +179,38 @@
   <top>
     <ToolBar>
       <items>
-        <Button mnemonicParsing="false" onAction="#loadAction" text="Cargar" />
-        <Button mnemonicParsing="false" onAction="#addFileAction" text="Añadir Fichero/s" />
-        <Button mnemonicParsing="false" onAction="#combineAction" text="Combinar Graficas" />
-        <Button mnemonicParsing="false" onAction="#diaryAction" text="Diario de Actividad" />
+        <Button mnemonicParsing="false" onAction="#loadAction" text="Cargar">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/load.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+        <Button mnemonicParsing="false" onAction="#addFileAction" text="Añadir Fichero/s">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+        <Button mnemonicParsing="false" onAction="#combineAction" text="Combinar Graficas">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/combine.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+        <Button mnemonicParsing="false" onAction="#diaryAction" text="Diario de Actividad">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/chart.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
       </items>
     </ToolBar>
   </top>
