@@ -24,7 +24,7 @@ public class Summary{
         controller.labelFCMedia.setText(track.getAverageHeartrate() + " PPM");
         controller.labelCPMaxima.setText(track.getMaxCadence() + " Pedaleadas/m");
         controller.labelCPMedia.setText(track.getAverageCadence() + " Pedaleadas/m");
-        controller.labelDesnivel.setText(formatDouble(track.getTotalAscent() - track.getTotalDescend()) + " m");   
+        controller.labelDesnivel.setText(track.getMaxHeight() - track.getMinHeight() + " m");   
         controller.labelDistanciaRecorrida.setText(formatDouble(track.getTotalDistance() / 1e3) + " Km");
         controller.labelTiempoMovimiento.setText(formatDuration(track.getMovingTime()));
     }
