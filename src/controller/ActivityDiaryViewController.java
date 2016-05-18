@@ -32,9 +32,9 @@ public class ActivityDiaryViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList list = FXCollections.observableArrayList(
-            "Ultima semana","Ultimo mes", "Ultimos 3 meses"
+            "Ultimo mes", "Ultimos 3 meses", "Ultimos 6 meses"
         );
-        choiceBox.setValue("Ultima semana");
+        choiceBox.setValue("Ultima mes");
         choiceBox.setItems(list);
         choiceBox.valueProperty().addListener(new ChangeListener(){
            @Override
@@ -43,6 +43,9 @@ public class ActivityDiaryViewController implements Initializable {
                  refreshChart(position);
             }
         });
+        
+        barChart.getXAxis().setTickLabelRotation(-40);
+        barChart2.getXAxis().setTickLabelRotation(-40);
     }
     
     // Time es para saber si hay que mirar de la ultima semana, mes...
@@ -56,13 +59,13 @@ public class ActivityDiaryViewController implements Initializable {
         int today = date.getDayOfYear();
         switch(time){
             case 0:
-                date = LocalDateTime.now().minusWeeks(1);
-                break;
-            case 1:
                 date = LocalDateTime.now().minusMonths(1);
                 break;
-            case 2:
+            case 1:
                 date = LocalDateTime.now().minusMonths(3);
+                break;
+            case 2:
+                date = LocalDateTime.now().minusMonths(6);
                 break;
             default:
                 break;
@@ -88,6 +91,7 @@ public class ActivityDiaryViewController implements Initializable {
     
     public void setTracksList(TracksList tracksList){
         this.tracksList = tracksList;
+        refreshChart(0);
     }
     
     public void sort(XYChart.Series<String,Number> serie){
