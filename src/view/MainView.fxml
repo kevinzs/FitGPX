@@ -12,10 +12,11 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -26,36 +27,33 @@
       <content>
         <BorderPane fx:id="borderPane" prefHeight="1447.0" prefWidth="903.0">
           <center>
-            <VBox alignment="CENTER" prefHeight="1000.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" fillWidth="true" prefHeight="1000.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
               <children>
                 <Separator prefWidth="200.0">
                   <VBox.margin>
                     <Insets bottom="20.0" top="20.0" />
                   </VBox.margin>
                 </Separator>
-                <HBox prefHeight="30.0" prefWidth="776.0">
+                <GridPane alignment="CENTER" gridLinesVisible="false" maxWidth="1.7976931348623157E308" minWidth="20.0" prefHeight="17.0" prefWidth="445.0" VBox.vgrow="ALWAYS">
                   <children>
-                    <Label contentDisplay="CENTER" prefHeight="56.0" prefWidth="150.0" text="Gráficas" textAlignment="CENTER">
+                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="128.0" text="Gráficas" textAlignment="CENTER" textOverrun="ELLIPSIS" underline="false" wrapText="false" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                       <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="25.0" fx:id="x1" />
                       </font>
-                      <HBox.margin>
-                        <Insets left="330.0" />
-                      </HBox.margin>
                     </Label>
-                    <ToggleButton fx:id="toggleBase" contentDisplay="CENTER" mnemonicParsing="false" onAction="#togglePressed" prefHeight="500.0" prefWidth="150.0" text="Cambio base" textAlignment="CENTER">
-                      <HBox.margin>
-                        <Insets left="120.0" />
-                      </HBox.margin>
-                    </ToggleButton>
+                    <ToggleButton fx:id="toggleBase" contentDisplay="CENTER" mnemonicParsing="false" onAction="#togglePressed" prefHeight="600.0" prefWidth="150.0" text="Cambio base" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                   </children>
-                  <VBox.margin>
-                    <Insets />
-                  </VBox.margin>
-                </HBox>
+                  <columnConstraints>
+                    <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="827.0" minWidth="10.0" prefWidth="300.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                </GridPane>
                 <AreaChart fx:id="chartAltura" maxHeight="-Infinity" prefHeight="175.0" prefWidth="776.0">
                   <xAxis>
-                    <NumberAxis id="chartAreaX" side="BOTTOM" />
+                    <NumberAxis id="chartAreaX" side="BOTTOM" fx:id="xAxis" />
                   </xAxis>
                   <yAxis>
                     <NumberAxis id="chartAreaY" side="LEFT" />
@@ -96,24 +94,23 @@
             </VBox>
           </center>
           <top>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="0.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" fillWidth="true" prefHeight="200.0" prefWidth="100.0" spacing="0.0" BorderPane.alignment="CENTER">
               <children>
-                <GridPane prefHeight="56.0" prefWidth="765.0">
+                <GridPane prefHeight="-1.0" prefWidth="872.9998779296875">
                   <children>
-                    <Label alignment="CENTER" contentDisplay="CENTER" text="Resumen de la sesión" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label alignment="CENTER" contentDisplay="CENTER" font="$x1" text="Resumen de la sesión" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <Label fx:id="labelFecha" alignment="CENTER" contentDisplay="CENTER" text="" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                       <font>
-                        <Font name="System Bold" size="25.0" />
+                        <Font name="System Bold" size="15.0" />
                       </font>
-                    </Label>
-                    <Label fx:id="labelFecha" text="" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-                      <font>
-                        <Font size="15.0" />
-                      </font>
+                      <GridPane.margin>
+                        <Insets right="40.0" />
+                      </GridPane.margin>
                     </Label>
                   </children>
                   <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="494.0" minWidth="10.0" prefWidth="467.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="258.0" minWidth="10.0" prefWidth="258.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="750.0" minWidth="10.0" prefWidth="402.0" />
+                    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="2.0" prefWidth="-1.0" />
                   </columnConstraints>
                   <rowConstraints>
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -122,7 +119,7 @@
                     <Insets left="30.0" top="30.0" />
                   </VBox.margin>
                 </GridPane>
-                <GridPane prefHeight="170.0" prefWidth="736.0">
+                <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="170.0" prefWidth="736.0" VBox.vgrow="ALWAYS">
                   <children>
                     <Label text="Duración:" />
                     <Label text="Velocidad máxima:" GridPane.columnIndex="2" />
@@ -182,10 +179,38 @@
   <top>
     <ToolBar>
       <items>
-        <Button mnemonicParsing="false" onAction="#loadAction" text="Cargar" />
-        <Button mnemonicParsing="false" onAction="#addFileAction" text="Añadir Fichero/s" />
-        <Button mnemonicParsing="false" onAction="#combineAction" text="Combinar Graficas" />
-        <Button mnemonicParsing="false" text="Diario de Actividad" />
+        <Button mnemonicParsing="false" onAction="#loadAction" text="Cargar">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/load.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+        <Button mnemonicParsing="false" onAction="#addFileAction" text="Añadir Fichero/s">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+        <Button mnemonicParsing="false" onAction="#combineAction" text="Combinar Graficas">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/combine.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+        <Button mnemonicParsing="false" onAction="#diaryAction" text="Diario de Actividad">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/chart.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
       </items>
     </ToolBar>
   </top>

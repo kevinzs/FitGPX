@@ -20,7 +20,7 @@ public class LoadingViewController implements Initializable {
         progressIndicator.progressProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldvalue, Number newvalue) {
-                if(newvalue.doubleValue() > 0.99) closeWindow();
+                if(newvalue.doubleValue() == 1.0) closeWindow();
             }
         });
     }

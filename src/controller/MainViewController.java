@@ -22,7 +22,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import jgpx.model.analysis.TrackData;
@@ -60,7 +59,6 @@ public class MainViewController implements Initializable {
 
     private FileLoader fileLoader;
     private TracksList tracksList;
-    private List<File> files;
     private TrackData selectedTrack;
     private Summary summary;
     private Charts charts;
@@ -122,16 +120,47 @@ public class MainViewController implements Initializable {
                 newStage.setTitle("Combinar graficas");
 
                 FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/CombineView.fxml"));
-                AnchorPane root = (AnchorPane) miCargador.load();
-
+                BorderPane root = (BorderPane) miCargador.load();
 
                 ((CombineViewController) miCargador.getController()).setController(this);
                 ((CombineViewController) miCargador.getController()).setSeries(charts.getSeries());
 
+                Scene scene = new Scene(root);
+                newStage.setScene(scene);
+                newStage.show();
+                
+                newStage.setMinWidth(newStage.getWidth());
+                newStage.setMinHeight(newStage.getHeight()+30);
+            } catch (IOException ex) {
+                Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Advertencia");
+            alert.setHeaderText("Ninguna sesión seleccionada.");
+            alert.setContentText("Cargue y/o seleccione alguna sesión por favor.");
+            alert.showAndWait();
+        }
+    }
+    
+    @FXML
+    private void diaryAction(ActionEvent event) {
+        if(listView.getSelectionModel().selectedItemProperty() != null){
+            try {
+                Stage newStage = new Stage();
+                newStage.setTitle("Diario de Actividad");
+
+                FXMLLoader miCargador = new FXMLLoader(getClass().getResource("/view/ActivityDiaryView.fxml"));
+                BorderPane root = (BorderPane) miCargador.load();
+                
+                ((ActivityDiaryViewController) miCargador.getController()).setTracksList(tracksList);
 
                 Scene scene = new Scene(root);
                 newStage.setScene(scene);
                 newStage.show();
+                
+                newStage.setMinWidth(newStage.getWidth());
+                newStage.setMinHeight(newStage.getHeight()+30);
             } catch (IOException ex) {
                 Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
             }
