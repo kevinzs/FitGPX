@@ -74,13 +74,21 @@ public class MainViewController implements Initializable {
         summary = new Summary(this);
         charts = new Charts(this);
 
+       
         listView.getSelectionModel().selectedIndexProperty().
                 addListener((o, oldVal, newVal) -> {
-                    selectedTrack = tracksList.getTrackData((int) newVal);
-                    summary.setLabels(selectedTrack);
-                    charts.setTrackData(selectedTrack);
-                    charts.refreshCharts();
-                });
+                    try{
+                        selectedTrack = tracksList.getTrackData((int) newVal);
+                        charts.setTrackData(selectedTrack);
+                        charts.refreshCharts();
+                        summary.setLabels(selectedTrack);
+                    } catch (ArrayIndexOutOfBoundsException e){
+                        /* Puesto para que no salte la exception al cargar un fichero
+                           y que no haya ninguno seleccionado en la lista. La excepcion
+                           no afecta al funcionamiento del programa. */
+                    }
+        });
+        
         
         scrollPane.widthProperty().addListener(
                 (observable, oldvalue, newvalue) -> borderPane.setPrefWidth((Double)newvalue - 20)
