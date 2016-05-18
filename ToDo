@@ -1,5 +1,16 @@
 Cosas por hacer:
 	- Hacer la barra de tareas (Diario).
+	- Beautificar todo lo que nos apetezca.
+	- ¿Superponer graficas del diario?
+
+BUGS:
+	(Diario)
+	- Diario solo sale ordenado si vienes de ventana ultimo mes.
+	- No aparece valor x para todos las bars de ultimo mes.
+	(Ventana principal)
+	- Error en las graficas? La velocidad maxima observada en las graficas no es la misma que la del resumen.
+	lo mismo pasa con la altura final, que no es la misma que el desnivel acumulado. A lo mejor mas errores
+
 
 Sugerencias para el CSS:
 	- Reducir el ancho de linea de los line chart y poner varios colores

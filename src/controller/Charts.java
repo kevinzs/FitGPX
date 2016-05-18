@@ -55,9 +55,11 @@ public class Charts{
         controller.chartAltura.setCreateSymbols(false);
         controller.chartAltura.getData().clear();
         controller.chartAltura.getData().addAll(seriesAltura);
+        controller.chartAltura.getYAxis().setLabel("m");
         NumberAxis xAxis = (NumberAxis) controller.chartAltura.getXAxis();
         if (controller.toggleBase.isSelected()){
             controller.chartAltura.setTitle("Altura x Tiempo");
+            xAxis.setLabel("");
             xAxis.setTickLabelFormatter(new StringConverter<Number>() {
                 @Override
                 public String toString(Number object) {
@@ -74,6 +76,7 @@ public class Charts{
         }
         else{
             controller.chartAltura.setTitle("Altura x Distancia");
+            xAxis.setLabel("Km");
             xAxis.setTickLabelFormatter(new StringConverter<Number>() {
                 @Override
                 public String toString(Number object) {
@@ -93,8 +96,10 @@ public class Charts{
         controller.chartVelocidad.getData().clear();
         controller.chartVelocidad.getData().addAll(seriesVelocidad);
         NumberAxis xAxis = (NumberAxis) controller.chartVelocidad.getXAxis();
+        controller.chartVelocidad.getYAxis().setLabel("Km/h");
         if (controller.toggleBase.isSelected()){
             controller.chartVelocidad.setTitle("Velocidad x Tiempo");
+            xAxis.setLabel("");
             xAxis.setTickLabelFormatter(new StringConverter<Number>() {
                 @Override
                 public String toString(Number object) {
@@ -110,6 +115,7 @@ public class Charts{
             });
         } else {
             controller.chartVelocidad.setTitle("Velocidad x Distancia");
+            controller.chartVelocidad.getXAxis().setLabel("Km");
             xAxis.setTickLabelFormatter(new StringConverter<Number>() {
                 @Override
                 public String toString(Number object) {
@@ -129,8 +135,10 @@ public class Charts{
         controller.chartFC.getData().clear();
         controller.chartFC.getData().addAll(seriesFC);
         NumberAxis xAxis = (NumberAxis) controller.chartFC.getXAxis();
+        controller.chartFC.getYAxis().setLabel("PPM");
         if (controller.toggleBase.isSelected()){
             controller.chartFC.setTitle("FC x Tiempo");
+            xAxis.setLabel("");
             xAxis.setTickLabelFormatter(new StringConverter<Number>() {
                 @Override
                 public String toString(Number object) {
@@ -146,6 +154,7 @@ public class Charts{
             });
         } else {
             controller.chartFC.setTitle("FC x Distancia");
+            controller.chartFC.getXAxis().setLabel("Km");
             xAxis.setTickLabelFormatter(new StringConverter<Number>() {
                 @Override
                 public String toString(Number object) {
@@ -165,8 +174,10 @@ public class Charts{
         controller.chartCadencia.getData().clear();
         controller.chartCadencia.getData().addAll(seriesCadencia);
         NumberAxis xAxis = (NumberAxis) controller.chartCadencia.getXAxis();
+        controller.chartCadencia.getYAxis().setLabel("Pedaleadas");
         if (controller.toggleBase.isSelected()){
             controller.chartCadencia.setTitle("Cadencia x Tiempo");
+            xAxis.setLabel("");
             xAxis.setTickLabelFormatter(new StringConverter<Number>() {
                 @Override
                 public String toString(Number object) {
@@ -182,6 +193,7 @@ public class Charts{
             });
         } else {
             controller.chartCadencia.setTitle("Cadencia x Distancia");
+            controller.chartCadencia.getXAxis().setLabel("Km");
             xAxis.setTickLabelFormatter(new StringConverter<Number>() {
                 @Override
                 public String toString(Number object) {
@@ -206,7 +218,7 @@ public class Charts{
                 new PieChart.Data("Anaeróbico", z5));
         controller.chartDistribucion.setData(pieChartData);
         controller.chartDistribucion.setTitle("Tiempo en cada zona cardiaca\n"
-                                              + "         FC Maxima: " + maxFC + " PPM" );
+                                              + "         FC Máxima: " + maxFC + " PPM" );
     }
     
     public void refreshCharts(){
