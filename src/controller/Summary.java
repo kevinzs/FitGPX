@@ -17,8 +17,8 @@ public class Summary{
     public void setLabels(TrackData track){
         controller.labelFecha.setText(track.getStartTime().toString().substring(0,10));
         controller.labelDuracion.setText(formatDuration(track.getTotalDuration()));
-        controller.labelVelocidadMaxima.setText(formatDouble((track.getMaxSpeed()*18)/5) + " Km/h");
-        controller.labelVelocidadMedia.setText(formatDouble((track.getMaxSpeed()*18)/5) + " Km/h");
+        controller.labelVelocidadMaxima.setText(formatDouble(track.getMaxSpeed())+ " Km/h");
+        controller.labelVelocidadMedia.setText(formatDouble(track.getAverageSpeed()) + " Km/h");
         controller.labelFCMaxima.setText(track.getMaxHeartrate() + " PPM");
         controller.labelFCMinima.setText(track.getMinHeartRate() + " PPM");
         controller.labelFCMedia.setText(track.getAverageHeartrate() + " PPM");
