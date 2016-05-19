@@ -21,11 +21,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1000.0" stylesheets="@../utilities/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainViewController">
   <center>
-    <ScrollPane fx:id="scrollPane" prefHeight="1000.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+    <ScrollPane fx:id="scrollPane" prefHeight="1000.0" prefWidth="700.0" styleClass="scrollPane" stylesheets="@../utilities/stylesheet.css" BorderPane.alignment="CENTER">
       <content>
-        <BorderPane fx:id="borderPane" prefHeight="1447.0" prefWidth="903.0">
+        <BorderPane fx:id="borderPane" prefHeight="1447.0" prefWidth="903.0" stylesheets="@../utilities/stylesheet.css">
           <center>
             <VBox alignment="CENTER" fillWidth="true" prefHeight="1000.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
               <children>
@@ -175,12 +175,12 @@
   <left>
     <VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="200.0" BorderPane.alignment="CENTER">
       <children>
-        <ListView fx:id="listView" prefHeight="451.0" prefWidth="184.0" VBox.vgrow="ALWAYS" />
+        <ListView fx:id="listView" prefHeight="451.0" prefWidth="184.0" styleClass="list-cell" stylesheets="@../utilities/stylesheet.css" VBox.vgrow="ALWAYS" />
       </children>
     </VBox>
   </left>
   <top>
-    <ToolBar>
+    <ToolBar styleClass="toolbar" stylesheets="@../utilities/stylesheet.css">
       <items>
         <Button mnemonicParsing="false" onAction="#loadAction" text="Cargar">
                <graphic>
