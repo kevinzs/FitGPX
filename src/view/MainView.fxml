@@ -50,6 +50,9 @@
                   <rowConstraints>
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   </rowConstraints>
+                           <VBox.margin>
+                              <Insets left="150.0" />
+                           </VBox.margin>
                 </GridPane>
                 <AreaChart fx:id="chartAltura" maxHeight="-Infinity" prefHeight="175.0" prefWidth="776.0">
                   <xAxis>

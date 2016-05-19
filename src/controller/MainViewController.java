@@ -1,10 +1,8 @@
 package controller;
 
 import java.awt.Desktop;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
