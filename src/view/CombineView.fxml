@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CombineViewController">
+<BorderPane style="-fx-background-color: #F1FCFD;" styleClass="scrollPane" stylesheets="@../utilities/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CombineViewController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="56.0" prefWidth="649.0" BorderPane.alignment="CENTER">
          <children>
@@ -27,7 +26,7 @@
       </HBox>
    </bottom>
    <center>
-    <LineChart fx:id="chartCombinado" legendSide="BOTTOM" prefHeight="429.0" prefWidth="649.0" title="" BorderPane.alignment="CENTER">
+    <LineChart fx:id="chartCombinado" legendSide="BOTTOM" prefHeight="429.0" prefWidth="649.0" style="-fx-background-color: transparent;" stylesheets="@../utilities/stylesheet.css" title="" BorderPane.alignment="CENTER">
       <xAxis>
         <NumberAxis side="BOTTOM" />
       </xAxis>

@@ -1,0 +1,157 @@
+.scrollPane{
+    -fx-background: #F1FCFD;
+    -fx-background-color: transparent;
+}
+
+/* The main scrollbar **track** CSS class  */
+.scrollPane .scroll-bar:horizontal .track,
+.scrollPane .scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:2em;
+}
+
+/* The main scrollbar **track** CSS class  */
+.scrollPane .scroll-bar:horizontal .track,
+.scrollPane .scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:2em;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+.scrollPane .scroll-bar:vertical .increment-button ,
+.scrollPane .scroll-bar:vertical .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 12 0 0; 
+}
+
+.scrollPane  .scroll-bar .increment-arrow,
+.scrollPane  .scroll-bar .decrement-arrow{
+    -fx-shape: " ";
+    -fx-padding:0;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.scrollPane .scroll-bar:horizontal .thumb,
+.scrollPane .scroll-bar:vertical .thumb {
+    -fx-background-color: #344a9a;
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.button{
+    -fx-background-color: #344a9a;
+    -fx-background-radius: 1px;
+    -fx-text-fill: #F1FCFD;
+}
+
+.toolbar{
+    -fx-background-color: #a6d0d4;
+}
+
+.vbox{
+    -fx-background-color: #a6d0d4;
+}
+
+.label{
+    -fx-text-fill: #393737;
+}
+
+.toggle-button{
+    -fx-background-color: #344a9a;
+    -fx-background-radius: 1px;
+    -fx-text-fill: #F1FCFD;
+}
+
+.toggle-button:selected{
+    -fx-background-color: #344a9a;
+    -fx-background-radius: 1px;
+    -fx-text-fill: #F1FCFD;
+    -fx-effect: innershadow( gaussian , rgba(0,0,0,0.5) , 20,0,0,0 );
+}
+
+.list-cell{
+    -fx-background-color: #a6d0d4;
+}
+
+.list-cell:even{
+    -fx-background-color: #F1FCFD;
+}
+
+.list-cell:odd{
+    -fx-background-color: #b8d2d4;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: #344a9a;
+    -fx-text-fill: #F1FCFD;
+}
+
+/* The main scrollbar **track** CSS class  */
+.list-cell .scroll-bar:horizontal .track,
+.list-cell .scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:2em;
+}
+
+/* The main scrollbar **track** CSS class  */
+.list-cell .scroll-bar:horizontal .track,
+.list-cell .scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:2em;
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+.list-cell .scroll-bar:vertical .increment-button ,
+.list-cell .scroll-bar:vertical .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 10 0 0; 
+}
+
+.list-cell  .scroll-bar .increment-arrow,
+.list-cell  .scroll-bar .decrement-arrow{
+    -fx-shape: " ";
+    -fx-padding:0;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.list-cell .scroll-bar:horizontal .thumb,
+.list-cell .scroll-bar:vertical .thumb {
+    -fx-background-color: #344a9a;
+    -fx-background-insets: 0.5, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.choiceBox .menuItem:focused{
+    -fx-background-color: yellow ;
+}
+
+.choiceBox .context-menu{
+    -fx-background-color: yellow ;
+}
+
+.choiceBox{
+    -fx-mark-color: #F1FCFD;
+    -fx-background-color: #344a9a;
+    -fx-background-radius: 1px;
+    -fx-text-fill: #F1FCFD;
+}
+
+.default-color0.chart-area-symbol { -fx-background-color: #344a9a, #344a9a; }
+.default-color0.chart-series-area-line { -fx-stroke: #344a9a; }
+.default-color0.chart-series-area-fill { -fx-fill: #344a9aaa; }
+
+.chart-series-line {
+    -fx-fill: transparent;
+    -fx-stroke: #344a9a;
+    -fx-stroke-width: 1.5px;
+}

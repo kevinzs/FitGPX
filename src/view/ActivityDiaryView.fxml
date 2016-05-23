@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ActivityDiaryViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" style="-fx-background-color: #F1FCFD;" styleClass="scrollPane" stylesheets="@../utilities/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ActivityDiaryViewController">
    <top>
       <HBox alignment="CENTER" prefHeight="64.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -19,7 +19,7 @@
                   <Insets right="15.0" />
                </HBox.margin>
             </Label>
-            <ComboBox fx:id="choiceBox" prefHeight="26.0" prefWidth="180.0" />
+            <ComboBox fx:id="choiceBox" prefHeight="26.0" prefWidth="180.0" styleClass="choiceBox" stylesheets="@../utilities/stylesheet.css" />
          </children>
       </HBox>
    </top>
