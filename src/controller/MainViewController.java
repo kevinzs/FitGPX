@@ -72,6 +72,7 @@ public class MainViewController implements Initializable {
         summary = new Summary(this);
         charts = new Charts(this);
 
+        chartAltura.setStyle("-fx-stroke: #f0e68c;");
        
         listView.getSelectionModel().selectedIndexProperty().
                 addListener((o, oldVal, newVal) -> {
@@ -96,7 +97,7 @@ public class MainViewController implements Initializable {
     @FXML
     private void loadAction(ActionEvent event) {
         fileLoader.loadFiles();
-        if (!fileLoader.getFiles().equals(tracksList.getFiles())){
+        if (fileLoader.hasChanged()){
             tracksList.setFiles(fileLoader.getFiles());
             tracksList.loadFiles();
         }

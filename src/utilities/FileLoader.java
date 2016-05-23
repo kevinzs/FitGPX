@@ -33,7 +33,9 @@ public class FileLoader {
     public boolean hasChanged() { return changed; }
     
     public void loadFiles(){
+        changed = true;
         this.files = fileChooser.showOpenMultipleDialog(stage);
+        if(this.files == null) changed = false;
     }
     
     public void addFiles(){
